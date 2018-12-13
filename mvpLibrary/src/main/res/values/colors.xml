@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 基色 -->
+    <color name="colorPrimary">#647ae9</color>
+    <color name="colorPrimaryDark">#4A60D8</color>
+    <color name="colorPrimaryLight">#768aec</color>
+    <!-- 重点色:  -->
+    <color name="colorAccent">@color/colorPrimary</color>
+    <!-- 字色：白 -->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorSecondary">#9E9E9E</color>
+    <!-- 与主字色相反的字色：黑 -->
+    <color name="textColorPrimaryInverse">#DE000000</color>
+    <color name="textColorSecondaryInverse">#9E9E9E</color>
+
+    <!--颜色值-->
+    <color name="blue_normal">#56a9f0</color>
+    <color name="blue_pressed">#2e93e8</color>
+    <color name="red_normal">#edef6262</color>
+    <color name="red_pressed">#edd72e2e</color>
+    <color name="green_normal">#44c4a7</color>
+    <color name="green_pressed">#008d60</color>
+    <color name="orange_normal">#e4a244</color>
+    <color name="orange_pressed">#e38908</color>
+
+    <color name="red">#FF0000</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="blue">#2196F3</color>
+    <color name="orange">#F57C00</color>
+    <color name="orange_light">#f6b45e</color>
+    <color name="teal">#00796B</color>
+    <color name="green">#0ba25d</color>
+    <color name="brown">#8D6E63</color>
+    <color name="grey">#607D8B</color>
+    <color name="gray">#cfcfcfcf</color>
+    <color name="black_deep">#ff000000</color>
+    <color name="gray_light">#F0EFF5</color>
+    <color name="pink">#eb6b9e</color>
+
+    <!--兼容、不规范-->
+    <color name="bg_header">#F0EFF5</color>
+    <color name="bg_common">#F0EFF5</color>
+    <color name="bg_divide">#e7e9ee</color>
+    <color name="main_text">#333333</color>
+    <color name="common_text">#737373</color>
+    <color name="little_text">#a6a6a6</color>
+    <color name="disable_text">#d9d9d9</color>
+
+    <!--ios dialog-->
+    <color name="trans">#00000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+</resources>

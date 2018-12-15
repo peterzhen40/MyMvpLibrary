@@ -1,4 +1,4 @@
-package cn.cbsd.qnfireworks.widget;
+package cn.cbsd.mvplibrary.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

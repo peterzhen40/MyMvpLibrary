@@ -1,4 +1,4 @@
-package cn.cbsd.qnfireworks.widget;
+package cn.cbsd.mvplibrary.widget;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

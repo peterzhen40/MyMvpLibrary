@@ -1,4 +1,4 @@
-package cn.cbsd.qnfireworks.widget;
+package cn.cbsd.mvplibrary.widget;
 
 /**
  * 当前类注释:

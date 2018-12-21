@@ -12,8 +12,8 @@ import retrofit2.Retrofit;
 
 /**
  * 当前类注释:
- * Author: zhenyanjun
- * Date  : 2017/12/8 16:56
+ * @author zhenyanjun
+ * @date   2017/12/8 16:56
  */
 
 public class NullOnEmptyConverterFactory extends Converter.Factory {
@@ -26,7 +26,10 @@ public class NullOnEmptyConverterFactory extends Converter.Factory {
         return new Converter<ResponseBody, Object>() {
             @Override
             public Object convert(ResponseBody body) throws IOException {
-                if (body.contentLength() == 0) return null;
+                if (body.contentLength() == 0) {
+                    throw new IOException("返回内容为空");
+                    //return null;
+                }
                 return delegate.convert(body);
             }
         };

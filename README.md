@@ -21,5 +21,6 @@ allprojects {
 
 ```
 dependencies {
-     implementation 'com.github.peterzhen40:MyMvpLibrary:1.0.3'
+     implementation 'com.github.peterzhen40:MyMvpLibrary:1.1.0'
 }
+```

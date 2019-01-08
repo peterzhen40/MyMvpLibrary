@@ -1,4 +1,4 @@
-package cn.cbsd.mvplibrary.router;
+package cn.cbsd.base.router;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import cn.cbsd.mvplibrary.CommonConfig;
 
 
 /**
@@ -27,8 +26,8 @@ public class Router {
     private Bundle data;
     private ActivityOptionsCompat options;
     private int requestCode = -1;
-    private int enterAnim = CommonConfig.ROUTER_ANIM_ENTER;
-    private int exitAnim = CommonConfig.ROUTER_ANIM_EXIT;
+    private int enterAnim = RES_NONE;
+    private int exitAnim = RES_NONE;
     private boolean isFragment = false;
     private Fragment fromFragment;
 

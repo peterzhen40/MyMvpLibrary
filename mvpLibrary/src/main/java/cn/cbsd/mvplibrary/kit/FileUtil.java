@@ -698,21 +698,15 @@ public class FileUtil {
      */
     public static File createImageFile() {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        try {
-            String imgPath = IMAGES_PATH;
-            File file = new File(imgPath);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            File image = File.createTempFile(imageFileName, ".jpg", file);
-            //                    Environment.getExternalStorageDirectory()      /* directory */);
-            return image;
-        } catch (IOException e) {
-            //do noting
-            return null;
+        String timeStamp = System.currentTimeMillis()+"";
+        String imageFileName = "JPEG_" + timeStamp + ".jpg";
+        String imgPath = IMAGES_PATH;
+        File parentFile = new File(imgPath);
+        if (!parentFile.exists()) {
+            parentFile.mkdirs();
         }
+        File image = new File(parentFile,imageFileName);
+        return image;
     }
 
     //删除文件夹所有文件

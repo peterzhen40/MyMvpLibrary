@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "cn.peterzhen.demo"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
@@ -26,4 +26,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.0.2'
     testImplementation 'junit:junit:4.12'
     implementation project(':mvpLibrary')
+    implementation 'com.github.FengChenSunshine:UiStatus:1.0.0'
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.6.0"
 }

@@ -159,6 +159,13 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     }
 
     @Override
+    public void showLoading(String msg) {
+        if (!isFinishing()) {
+            getvDelegate().showLoading(msg);
+        }
+    }
+
+    @Override
     public void hideLoading() {
         getvDelegate().dismissLoading();
     }

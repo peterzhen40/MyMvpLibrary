@@ -163,6 +163,13 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     }
 
     @Override
+    public void showLoading(String msg) {
+        if (getActivity()!=null && !getActivity().isFinishing()) {
+            getvDelegate().showLoading(msg);
+        }
+    }
+
+    @Override
     public void hideLoading() {
         getvDelegate().dismissLoading();
     }

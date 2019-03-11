@@ -24,6 +24,7 @@ public interface IView<P> {
     P newP();
 
     void showLoading();
+    void showLoading(String msg);
 
     void hideLoading();
 

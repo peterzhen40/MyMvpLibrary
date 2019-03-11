@@ -126,6 +126,13 @@ public abstract class XLazyFragment<P extends IPresent>
     }
 
     @Override
+    public void showLoading(String msg) {
+        if (getActivity()!=null && !getActivity().isFinishing()) {
+            getvDelegate().showLoading(msg);
+        }
+    }
+
+    @Override
     public void hideLoading() {
         getvDelegate().dismissLoading();
     }

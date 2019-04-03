@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.View;
 
+import com.fengchen.uistatus.UiStatusController;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -32,6 +33,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     private RxPermissions rxPermissions;
 
     private Unbinder unbinder;
+    private UiStatusController mUiController;
 
 
     @Override
@@ -42,6 +44,9 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
+            if (useUiState()) {
+                mUiController = UiStatusController.get().bind(this);
+            }
             bindUI(null);
             bindEvent();
         }
@@ -54,6 +59,15 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
         //子类默认竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    public UiStatusController getUiController() {
+        return mUiController;
+    }
+
+    @Override
+    public boolean useUiState() {
+        return false;
     }
 
     @Override

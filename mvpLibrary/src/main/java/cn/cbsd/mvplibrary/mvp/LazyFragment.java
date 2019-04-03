@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.fengchen.uistatus.UiStatusController;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import java.lang.reflect.Field;
@@ -37,6 +38,7 @@ public class LazyFragment extends RxFragment {
     private static final int STATE_NO_VISIBLE = 0;  //用户不可见
 
     private static final String TAG_ROOT_FRAMELAYOUT = "tag_root_framelayout";
+    private UiStatusController mUiController;
 
 
     @Nullable
@@ -44,9 +46,11 @@ public class LazyFragment extends RxFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.layoutInflater = inflater;
         this.container = container;
+        mUiController = UiStatusController.get();
         onCreateView(savedInstanceState);
-        if (rootView == null)
+        if (rootView == null) {
             return super.onCreateView(inflater, container, savedInstanceState);
+        }
 
         return rootView;
     }
@@ -113,19 +117,33 @@ public class LazyFragment extends RxFragment {
         if (isLazyEnable && getRootView() != null && getRootView().getParent() != null) {
             layout.removeAllViews();
             View view = layoutInflater.inflate(layoutResID, layout, false);
+            if (useUiState()) {
+                view = mUiController.bindFragment(view);
+            }
             layout.addView(view);
         } else {
             rootView = layoutInflater.inflate(layoutResID, container, false);
+            if (useUiState()) {
+                rootView = mUiController.bindFragment(rootView);
+            }
         }
     }
 
     protected void setContentView(View view) {
         if (isLazyEnable && getRootView() != null && getRootView().getParent() != null) {
             layout.removeAllViews();
-            layout.addView(view);
+            layout.addView(mUiController.bindFragment(view));
         } else {
-            rootView = view;
+            rootView = mUiController.bindFragment(view);
         }
+    }
+
+    public UiStatusController getUiController() {
+        return mUiController;
+    }
+
+    protected boolean useUiState() {
+        return false;
     }
 
     @Override
@@ -220,7 +238,9 @@ public class LazyFragment extends RxFragment {
         rootView = null;
         container = null;
         layoutInflater = null;
-        if (isInitReady) onDestoryLazy();
+        if (isInitReady) {
+            onDestoryLazy();
+        }
         isInitReady = false;
     }
 

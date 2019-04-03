@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fengchen.uistatus.UiStatusController;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -32,6 +33,7 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     private Unbinder unbinder;
 
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
+    private UiStatusController mUiController;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,9 +71,21 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
             }
         }
 
+        if (useUiState()) {
+            mUiController = UiStatusController.get();
+            rootView = mUiController.bindFragment(rootView);
+        }
         return rootView;
     }
 
+    public UiStatusController getUiController() {
+        return mUiController;
+    }
+
+    @Override
+    public boolean useUiState() {
+        return false;
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

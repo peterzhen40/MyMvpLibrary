@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 10
+        versionName "1.1.4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -70,6 +70,8 @@ dependencies {
     api ('com.github.hss01248:Toasty:2.0.6', {
         exclude group: 'com.android.support'
     })
+
+    api 'com.github.FengChenSunshine:UiStatus:1.0.0'
 }
 
 tasks.withType(JavaCompile) {

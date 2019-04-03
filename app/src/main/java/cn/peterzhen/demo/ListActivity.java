@@ -5,12 +5,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.fengchen.uistatus.UiStatusController;
-import com.fengchen.uistatus.UiStatusManager;
 import com.fengchen.uistatus.annotation.UiStatus;
-import com.fengchen.uistatus.controller.IUiStatusController;
-import com.fengchen.uistatus.listener.OnRetryListener;
+import com.fengchen.uistatus.listener.OnLayoutStatusChangedListener;
 
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
@@ -31,6 +31,8 @@ public class ListActivity extends XActivity {
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    private UiStatusController mUiController;
+    int count= 0;
 
     @Override
     public int getLayoutId() {
@@ -39,17 +41,34 @@ public class ListActivity extends XActivity {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        UiStatusManager.getInstance()
-                .addUiStatusConfig(UiStatus.LOADING,R.layout.view_loading)
-                .addUiStatusConfig(UiStatus.EMPTY,R.layout.view_empty)
-                .addUiStatusConfig(UiStatus.LOAD_ERROR, R.layout.view_error, R.id.error_btn_retry, new OnRetryListener() {
-                    @Override
-                    public void onUiStatusRetry(Object o, IUiStatusController iUiStatusController, View view) {
-                        iUiStatusController.changeUiStatus(UiStatus.CONTENT);
-                    }
-                });
-        UiStatusController.get().bind(this);
-//        UiStatusController.get().getUiStatusConfig(UiStatus.LOAD_ERROR).layoutResId
+
+        mUiController = UiStatusController.get().bind(this);
+
+        mUiController.setOnLayoutStatusChangedListener(new OnLayoutStatusChangedListener() {
+            @Override
+            public void onPrepareChanged(Object o, View view, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onChangedComplete(Object target, View view, int uiStatus, boolean isShow) {
+                if (uiStatus == UiStatus.LOAD_ERROR) {
+                    final TextView textView = view.findViewById(R.id.tv_msg_error);
+                    Button button = view.findViewById(R.id.error_btn_retry);
+                    textView.setText("加载出错哈哈哈哈哈");
+
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            count++;
+                            textView.setText("重试次数："+count);
+                        }
+                    });
+                }
+            }
+        });
+
+        mUiController.changeUiStatus(UiStatus.LOAD_ERROR);
     }
 
     @Override

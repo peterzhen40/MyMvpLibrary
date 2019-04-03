@@ -52,6 +52,11 @@ public abstract class XLazyFragment<P extends IPresent>
     }
 
     @Override
+    public boolean useUiState() {
+        return false;
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         //保存隐藏的状态
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());

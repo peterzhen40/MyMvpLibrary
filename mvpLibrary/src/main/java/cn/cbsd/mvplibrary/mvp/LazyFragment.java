@@ -117,13 +117,13 @@ public class LazyFragment extends RxFragment {
         if (isLazyEnable && getRootView() != null && getRootView().getParent() != null) {
             layout.removeAllViews();
             View view = layoutInflater.inflate(layoutResID, layout, false);
-            if (useUiState()) {
+            if (useDefaultUiState()) {
                 view = mUiController.bindFragment(view);
             }
             layout.addView(view);
         } else {
             rootView = layoutInflater.inflate(layoutResID, container, false);
-            if (useUiState()) {
+            if (useDefaultUiState()) {
                 rootView = mUiController.bindFragment(rootView);
             }
         }
@@ -132,17 +132,23 @@ public class LazyFragment extends RxFragment {
     protected void setContentView(View view) {
         if (isLazyEnable && getRootView() != null && getRootView().getParent() != null) {
             layout.removeAllViews();
-            layout.addView(mUiController.bindFragment(view));
+            if (useDefaultUiState()) {
+                view = mUiController.bindFragment(view);
+            }
+            layout.addView(view);
         } else {
-            rootView = mUiController.bindFragment(view);
+            if (useDefaultUiState()) {
+                view = mUiController.bindFragment(view);
+            }
+            rootView = view;
         }
     }
 
-    public UiStatusController getUiController() {
+    public UiStatusController getDefaultUiController() {
         return mUiController;
     }
 
-    protected boolean useUiState() {
+    protected boolean useDefaultUiState() {
         return false;
     }
 

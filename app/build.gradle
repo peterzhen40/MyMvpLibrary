@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         applicationId "cn.peterzhen.demo"
         minSdkVersion 19
@@ -28,4 +32,6 @@ dependencies {
     implementation project(':mvpLibrary')
     implementation 'com.github.FengChenSunshine:UiStatus:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.6.0"
+    //utils
+    implementation 'com.blankj:utilcode:1.22.9'
 }

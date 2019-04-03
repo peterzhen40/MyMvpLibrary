@@ -42,13 +42,12 @@
         android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/tv_error"
-        app:layout_constraintBottom_toTopOf="@+id/btn_retry"
+        app:layout_constraintBottom_toTopOf="@+id/btn_check"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:visibility="gone"
-        android:id="@+id/btn_retry"
+        android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_btn_blue"
@@ -60,7 +59,7 @@
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="点击重试"
+        android:text="检查"
         android:textColor="@color/white"/>
 
 </android.support.constraint.ConstraintLayout>

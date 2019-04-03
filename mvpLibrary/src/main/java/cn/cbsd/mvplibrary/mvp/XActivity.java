@@ -44,7 +44,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
         if (getLayoutId() > 0) {
             setContentView(getLayoutId());
-            if (useUiState()) {
+            if (useDefaultUiState()) {
                 mUiController = UiStatusController.get().bind(this);
             }
             bindUI(null);
@@ -61,12 +61,20 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    public UiStatusController getUiController() {
+    /**
+     * 获取默认的UiState
+     * @return
+     */
+    public UiStatusController getDefaultUiController() {
         return mUiController;
     }
 
+    /**
+     * 使用默认的UiState，即添加在界面的顶层
+     * @return
+     */
     @Override
-    public boolean useUiState() {
+    public boolean useDefaultUiState() {
         return false;
     }
 

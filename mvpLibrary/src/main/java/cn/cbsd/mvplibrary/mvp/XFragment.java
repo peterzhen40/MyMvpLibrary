@@ -71,19 +71,27 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
             }
         }
 
-        if (useUiState()) {
+        if (useDefaultUiState()) {
             mUiController = UiStatusController.get();
             rootView = mUiController.bindFragment(rootView);
         }
         return rootView;
     }
 
-    public UiStatusController getUiController() {
+    /**
+     * 获取默认的UiState
+     * @return
+     */
+    public UiStatusController getDefaultUiController() {
         return mUiController;
     }
 
+    /**
+     * 使用默认的UiState，即添加在界面的顶层
+     * @return
+     */
     @Override
-    public boolean useUiState() {
+    public boolean useDefaultUiState() {
         return false;
     }
 

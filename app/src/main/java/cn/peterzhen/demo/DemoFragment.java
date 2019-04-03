@@ -21,7 +21,7 @@ public class DemoFragment extends XLazyFragment {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        UiStatusController uiController = getUiController();
+        UiStatusController uiController = getDefaultUiController();
         uiController.changeUiStatus(UiStatus.LOAD_ERROR);
     }
 

@@ -28,6 +28,6 @@ public interface IView<P> {
 
     void hideLoading();
 
-    boolean useUiState();
+    boolean useDefaultUiState();
 
 }

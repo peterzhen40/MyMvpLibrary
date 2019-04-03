@@ -52,7 +52,7 @@ public abstract class XLazyFragment<P extends IPresent>
     }
 
     @Override
-    public boolean useUiState() {
+    public boolean useDefaultUiState() {
         return false;
     }
 

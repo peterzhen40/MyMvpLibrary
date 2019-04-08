@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 11
-        versionName "1.1.5"
+        versionCode 12
+        versionName "1.1.6"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -71,7 +71,9 @@ dependencies {
         exclude group: 'com.android.support'
     })
 
-    api 'com.github.FengChenSunshine:UiStatus:1.0.0'
+    api ('com.github.FengChenSunshine:UiStatus:1.0.0', {
+        exclude group: 'com.android.support'
+    })
 }
 
 tasks.withType(JavaCompile) {

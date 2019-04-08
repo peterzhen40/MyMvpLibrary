@@ -1,7 +1,6 @@
 package cn.cbsd.mvplibrary.mvp;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,7 +57,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
         initData(savedInstanceState);
 
         //子类默认竖屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     /**

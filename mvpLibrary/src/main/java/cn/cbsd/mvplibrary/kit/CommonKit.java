@@ -1,5 +1,6 @@
 package cn.cbsd.mvplibrary.kit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
@@ -20,11 +21,25 @@ import java.text.DecimalFormat;
 import java.util.UUID;
 
 /**
- * Author: zhenyanjun
- * Date  : 2017/4/21 15:21
+ * @author zhenyanjun
+ * @date   2017/4/21 15:21
  */
 
 public class CommonKit {
+
+    /**
+     * 判断Activity是否Destroy
+     * @param activity
+     * @return
+     */
+    public static boolean isActivityDestroy(Activity activity) {
+        if (activity == null || activity.isFinishing() || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * 隐藏软键盘
      */

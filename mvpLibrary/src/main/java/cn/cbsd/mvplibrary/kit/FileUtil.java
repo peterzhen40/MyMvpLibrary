@@ -61,14 +61,17 @@ public class FileUtil {
      */
     public static void initPath(Context context) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            PACKAGE_PATH = context.getExternalFilesDir("").getPath();
-            DOWNLOAD_PATH = PACKAGE_PATH + File.separator + "download";
-            IMAGES_PATH = PACKAGE_PATH + File.separator + "images";
-            VIDEOS_PATH = PACKAGE_PATH + File.separator + "videos";
-            mkDirs(PACKAGE_PATH);
-            mkDirs(DOWNLOAD_PATH);
-            mkDirs(IMAGES_PATH);
-            mkDirs(VIDEOS_PATH);
+            File externalFilesDir = context.getExternalFilesDir("");
+            if (externalFilesDir != null) {
+                PACKAGE_PATH = externalFilesDir.getPath();
+                DOWNLOAD_PATH = PACKAGE_PATH + File.separator + "download";
+                IMAGES_PATH = PACKAGE_PATH + File.separator + "images";
+                VIDEOS_PATH = PACKAGE_PATH + File.separator + "videos";
+                mkDirs(PACKAGE_PATH);
+                mkDirs(DOWNLOAD_PATH);
+                mkDirs(IMAGES_PATH);
+                mkDirs(VIDEOS_PATH);
+            }
         }
     }
 

@@ -7,7 +7,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        //开源bintray插件
+        classpath 'com.novoda:bintray-release:0.8.0'
     }
 }
 
@@ -24,4 +25,13 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    minSdkVersion = 16
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+    versionCode = 13
+    versionName = "1.1.7beta"
 }

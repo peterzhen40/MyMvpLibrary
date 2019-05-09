@@ -30,8 +30,4 @@ public class DemoFragment extends XLazyFragment {
         return null;
     }
 
-    @Override
-    public boolean useUiState() {
-        return true;
-    }
 }

@@ -1,0 +1,24 @@
+apply plugin: 'com.novoda.bintray-release'
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    tasks.withType(Javadoc) {
+        options{
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
+
+publish {
+    userOrg = 'peterzhen40'                   //bintray注册的用户名
+    groupId = 'cn.cbsd'                      //compile引用时的第1部分groupId
+    artifactId = 'MyMvpLibrary'                     //compile引用时的第2部分项目名
+    publishVersion = rootProject.versionName    //compile引用时的第3部分版本号
+    desc = 'mvp框架'                              //项目描述
+    website = 'https://github.com/peterzhen40/MyMvpLibrary'     //项目主页
+}

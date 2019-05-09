@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.NetworkUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fengchen.uistatus.UiStatusController;
@@ -113,9 +112,9 @@ public class ListActivity extends XActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!NetworkUtils.isConnected()) {
-                    mUiController.showWidget(UiStatus.WIDGET_NETWORK_ERROR);
-                }
+//                if (!NetworkUtils.isConnected()) {
+//                    mUiController.showWidget(UiStatus.WIDGET_NETWORK_ERROR);
+//                }
             }
         }, 1000);
     }

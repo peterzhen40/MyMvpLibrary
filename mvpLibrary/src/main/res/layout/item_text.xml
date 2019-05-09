@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +7,8 @@
     android:gravity="left"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     android:textSize="14sp"
     android:textColor="@color/common_text"
     android:layout_width="match_parent"

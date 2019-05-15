@@ -1015,4 +1015,61 @@ public class FileUtil {
         }
         return null;
     }
+
+    /**
+     * 获取文件后缀
+     * @param filename
+     * @return
+     */
+    public static String getFileSuffix(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot >-1) && (dot < (filename.length() - 1))) {
+                return filename.substring(dot + 1);
+            }
+        }
+        return filename;
+    }
+
+    /**
+     * 是否为图片类型
+     * @param suffix
+     * @return
+     */
+    public static boolean isPhoto(String suffix) {
+        if (TextUtils.isEmpty(suffix)) {
+            return false;
+        }
+
+        if (suffix.equalsIgnoreCase("jpg") || suffix.equalsIgnoreCase("png") || suffix.equalsIgnoreCase("jpeg")
+                || suffix.equalsIgnoreCase("gif") || suffix.equalsIgnoreCase("bmp")
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 是否为允许的文件类型
+     * @param suffix
+     * @return
+     */
+    public static boolean isPermitFileType(String suffix) {
+        if (TextUtils.isEmpty(suffix)) {
+            return false;
+        }
+
+        if (suffix.equalsIgnoreCase("jpg") || suffix.equalsIgnoreCase("png") || suffix.equalsIgnoreCase("jpeg")
+                || suffix.equalsIgnoreCase("gif") || suffix.equalsIgnoreCase("bmp")
+                || suffix.equalsIgnoreCase("zip") || suffix.equalsIgnoreCase("rar")
+                || suffix.equalsIgnoreCase("doc") || suffix.equalsIgnoreCase("docx")
+                || suffix.equalsIgnoreCase("ppt") || suffix.equalsIgnoreCase("pptx")
+                || suffix.equalsIgnoreCase("xls") || suffix.equalsIgnoreCase("xlsx")
+                || suffix.equalsIgnoreCase("pdf")
+        ) {
+            return true;
+        }
+
+        return false;
+    }
 }

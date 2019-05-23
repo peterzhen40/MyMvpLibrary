@@ -84,8 +84,8 @@ public class VDelegateBase implements VDelegate {
 
     @Override
     public void showInfo(String msg) {
-        //蓝色提示信息
-        MyToast.info(msg);
+        //提示信息
+        MyToast.errorBig(msg);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class VDelegateBase implements VDelegate {
 
     @Override
     public void show(String msg) {
-        //一般提示信息
+        //一般信息，跟toast差不多
         MyToast.show(msg);
     }
 

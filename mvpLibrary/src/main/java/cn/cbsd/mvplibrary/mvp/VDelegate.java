@@ -29,6 +29,8 @@ public interface VDelegate {
 
     void show(String msg);
 
+    void showToast(String msg, int duration);
+
     void showLoading(String msg);
 
     void dismissLoading();

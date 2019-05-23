@@ -43,6 +43,7 @@ public class VDelegateBase implements VDelegate {
 
     @Override
     public void showSuccess(String msg) {
+        //成功信息
         MyToast.successBig(msg);
     }
 
@@ -77,11 +78,13 @@ public class VDelegateBase implements VDelegate {
 
     @Override
     public void showWarn(String msg) {
+        //橙色警告信息
         MyToast.warn(msg);
     }
 
     @Override
     public void showInfo(String msg) {
+        //蓝色提示信息
         MyToast.info(msg);
     }
 
@@ -95,7 +98,13 @@ public class VDelegateBase implements VDelegate {
 
     @Override
     public void show(String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        //一般提示信息
+        MyToast.show(msg);
+    }
+
+    @Override
+    public void showToast(String msg, int duration) {
+        Toast.makeText(context, msg, duration).show();
     }
 
     @Override

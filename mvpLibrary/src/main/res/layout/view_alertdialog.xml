@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ios_bg"
+    android:paddingTop="20dp"
     android:orientation="vertical" >
 
     <TextView
+        android:visibility="visible"
         android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="18dp"
+        android:paddingBottom="8dp"
         tools:text="title"
         android:gravity="center"
         android:textColor="@color/black"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         tools:text="contentadfjldfjdlfjdlgjslfkjslfjslfj"
         android:textColor="@color/main_text"
@@ -35,7 +37,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
         android:background="@color/alertdialog_line" />
 
     <LinearLayout

@@ -1,7 +1,6 @@
 package cn.peterzhen.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -37,8 +36,7 @@ public class MainActivity extends XActivity {
             public void onClick(View v) {
                 //                Intent intent = new Intent(MainActivity.this, ListActivity.class);
                 //                startActivity(intent);
-                new AlertDialog.Builder(context)
-                        .setTitle("提示")
+                new IosDialog(context).builder()
                         .setMessage("获取数据异常")
                         .setPositiveButton("我知道了",null)
                         .setNegativeButton("取消",null)

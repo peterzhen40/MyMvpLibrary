@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lLayout_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="18dp"
+        tools:text="title"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -24,15 +26,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="6dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        tools:text="contentadfjldfjdlfjdlgjslfkjslfjslfj"
+        android:textColor="@color/main_text"
         android:textSize="16sp" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:background="@color/alertdialog_line" />
 
     <LinearLayout
@@ -47,6 +50,7 @@
             android:layout_weight="1"
             android:background="@drawable/iosdialog_left_selector"
             android:gravity="center"
+            tools:text="no"
             android:textColor="@color/actionsheet_blue"
             android:textSize="16sp" />
 
@@ -63,6 +67,7 @@
             android:layout_weight="1"
             android:background="@drawable/iosdialog_right_selector"
             android:gravity="center"
+            tools:text="yes"
             android:textColor="@color/actionsheet_blue"
             android:textSize="16sp"
             android:textStyle="bold" />

@@ -77,4 +77,10 @@ dependencies {
     api ('com.github.FengChenSunshine:UiStatus:1.0.0', {
         exclude group: 'com.android.support'
     })
+
+    //选择器
+    api 'com.contrarywind:Android-PickerView:4.1.6'
+    //log
+    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.orhanobut:logger:2.2.0'
 }

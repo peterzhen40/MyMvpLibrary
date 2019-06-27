@@ -27,6 +27,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -608,23 +609,54 @@ public class FileUtil {
             return FormetFileSize(blockSize);
         }
 
-        /**
-         * 获取指定文件大小
-         *
-         * @param file
-         * @return
-         * @throws Exception
-         */
-        private static long getFileSize(File file) throws Exception {
+        ///**
+        // * 获取指定文件大小
+        // *
+        // * @param file
+        // * @return
+        // * @throws Exception
+        // */
+        //private static long getFileSize(File file) throws Exception {
+        //    long size = 0;
+        //    if (file.exists()) {
+        //        FileInputStream fis = null;
+        //        fis = new FileInputStream(file);
+        //        size = fis.available();
+        //        fis.close();
+        //    } else {
+        //        file.createNewFile();
+        //        Log.e("获取文件大小", "文件不存在!");
+        //    }
+        //    return size;
+        //}
+
+        public static long getFileSize(File file) {
             long size = 0;
             if (file.exists()) {
                 FileInputStream fis = null;
-                fis = new FileInputStream(file);
-                size = fis.available();
-                fis.close();
+                try {
+                    fis = new FileInputStream(file);
+                    size = fis.available();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    try {
+                        if (fis != null) {
+                            fis.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             } else {
-                file.createNewFile();
-                Log.e("获取文件大小", "文件不存在!");
+                try {
+                    file.createNewFile();
+                    Log.e("获取文件大小", "文件不存在!");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return size;
         }

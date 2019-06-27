@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -269,7 +270,17 @@ public class IntentUtil {
         context.startActivityForResult(intent, requestCode);
     }
 
+    public static void selectVideo(Activity activity,int requstcode) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("video/*");
+        activity.startActivityForResult(intent,requstcode);
+    }
 
+    public static void selectVideo(Fragment fragment, int requstcode) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("video/*");
+        fragment.startActivityForResult(intent,requstcode);
+    }
 
 
 }

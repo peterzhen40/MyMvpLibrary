@@ -668,7 +668,7 @@ public class FileUtil {
          * @return
          * @throws Exception
          */
-        private static long getFileSizes(File f) throws Exception {
+        public static long getFileSizes(File f) throws Exception {
             long size = 0;
             File flist[] = f.listFiles();
             for (int i = 0; i < flist.length; i++) {
@@ -687,7 +687,7 @@ public class FileUtil {
          * @param fileS
          * @return
          */
-        private static String FormetFileSize(long fileS) {
+        public static String FormetFileSize(long fileS) {
             DecimalFormat df = new DecimalFormat("#.00");
             String fileSizeString = "";
             String wrongSize = "0B";
@@ -713,7 +713,7 @@ public class FileUtil {
          * @param sizeType
          * @return
          */
-        private static double FormetFileSize(long fileS, int sizeType) {
+        public static double FormetFileSize(long fileS, int sizeType) {
             DecimalFormat df = new DecimalFormat("#.00");
             double fileSizeLong = 0;
             switch (sizeType) {

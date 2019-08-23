@@ -38,7 +38,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityCollector.getInstance().addActivity(this);
+        ActivityCollector.Companion.getInstance().addActivity(this);
         context = this;
 
         if (getLayoutId() > 0) {
@@ -109,7 +109,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     protected void onStart() {
         super.onStart();
         if (useEventBus()) {
-            BusProvider.getBus().register(this);
+            BusProvider.INSTANCE.getBus().register(this);
         }
     }
 
@@ -136,7 +136,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     protected void onDestroy() {
         super.onDestroy();
         if (useEventBus()) {
-            BusProvider.getBus().unregister(this);
+            BusProvider.INSTANCE.getBus().unregister(this);
         }
         if (getP() != null) {
             getP().detachV();
@@ -145,7 +145,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
         p = null;
         vDelegate = null;
 
-        ActivityCollector.getInstance().removeActivity(this);
+        ActivityCollector.Companion.getInstance().removeActivity(this);
     }
 
     @Override
@@ -158,7 +158,7 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
 
     protected RxPermissions getRxPermissions() {
         rxPermissions = new RxPermissions(this);
-        rxPermissions.setLogging(CommonConfig.DEV);
+        rxPermissions.setLogging(CommonConfig.INSTANCE.getDEV());
         return rxPermissions;
     }
 

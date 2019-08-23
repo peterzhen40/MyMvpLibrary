@@ -99,7 +99,7 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (useEventBus()) {
-            BusProvider.getBus().register(this);
+            BusProvider.INSTANCE.getBus().register(this);
         }
         bindEvent();
         initData(savedInstanceState);
@@ -151,7 +151,7 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
     public void onDestroyView() {
         super.onDestroyView();
         if (useEventBus()) {
-            BusProvider.getBus().unregister(this);
+            BusProvider.INSTANCE.getBus().unregister(this);
         }
         if (getP() != null) {
             getP().detachV();
@@ -164,7 +164,7 @@ public abstract class XFragment<P extends IPresent> extends RxFragment implement
 
     protected RxPermissions getRxPermissions() {
         rxPermissions = new RxPermissions(getActivity());
-        rxPermissions.setLogging(CommonConfig.DEV);
+        rxPermissions.setLogging(CommonConfig.INSTANCE.getDEV());
         return rxPermissions;
     }
 

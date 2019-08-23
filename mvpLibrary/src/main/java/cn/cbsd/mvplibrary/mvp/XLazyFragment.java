@@ -45,7 +45,7 @@ public abstract class XLazyFragment<P extends IPresent>
             bindUI(getRealRootView());
         }
         if (useEventBus()) {
-            BusProvider.getBus().register(this);
+            BusProvider.INSTANCE.getBus().register(this);
         }
         bindEvent();
         initData(savedInstanceState);
@@ -94,7 +94,7 @@ public abstract class XLazyFragment<P extends IPresent>
     protected void onDestoryLazy() {
         super.onDestoryLazy();
         if (useEventBus()) {
-            BusProvider.getBus().unregister(this);
+            BusProvider.INSTANCE.getBus().unregister(this);
         }
         if (getP() != null) {
             getP().detachV();
@@ -108,7 +108,7 @@ public abstract class XLazyFragment<P extends IPresent>
 
     protected RxPermissions getRxPermissions() {
         rxPermissions = new RxPermissions(getActivity());
-        rxPermissions.setLogging(CommonConfig.DEV);
+        rxPermissions.setLogging(CommonConfig.INSTANCE.getDEV());
         return rxPermissions;
     }
 

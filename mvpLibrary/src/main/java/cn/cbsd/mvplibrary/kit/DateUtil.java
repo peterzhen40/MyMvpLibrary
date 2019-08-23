@@ -20,9 +20,9 @@ import timber.log.Timber;
  */
 
 public class DateUtil {
-    public static final String DEFAULT_DATE_TIME = CommonConfig.Pattern.DEFAULT_DATE_TIME;
-    public static final String DEFAULT_DATE = CommonConfig.Pattern.DEFAULT_DATE;
-    public static final String DEFAULT_TIME = CommonConfig.Pattern.DEFAULT_TIME;
+    public static final String DEFAULT_DATE_TIME = CommonConfig.Pattern.INSTANCE.getDEFAULT_DATE_TIME();
+    public static final String DEFAULT_DATE = CommonConfig.Pattern.INSTANCE.getDEFAULT_DATE();
+    public static final String DEFAULT_TIME = CommonConfig.Pattern.INSTANCE.getDEFAULT_TIME();
 
     public static String getFormatDate(Date date, String pattern) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());

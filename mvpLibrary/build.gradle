@@ -83,4 +83,8 @@ dependencies {
     //log
     api 'com.jakewharton.timber:timber:4.7.1'
     api 'com.orhanobut:logger:2.2.0'
+
+    //kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.anko:anko-common:$anko_version"
 }

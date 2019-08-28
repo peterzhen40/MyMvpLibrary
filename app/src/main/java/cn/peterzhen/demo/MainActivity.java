@@ -36,12 +36,13 @@ public class MainActivity extends XActivity {
             public void onClick(View v) {
                 //                Intent intent = new Intent(MainActivity.this, ListActivity.class);
                 //                startActivity(intent);
-                new IosDialog(context).builder()
-                        .setMessage("获取数据异常")
-                        .setPositiveButton("我知道了",null)
-                        .setNegativeButton("取消",null)
-                        .show();
+                //new IosDialog(getContext()).builder()
+                //        .setMessage("获取数据异常")
+                //        .setPositiveButton("我知道了",null)
+                //        .setNegativeButton("取消",null)
+                //        .show();
                 //                MyToast.show("获取数据错误");
+                //Router.Companion.newIntent(context)
             }
         });
 
@@ -54,10 +55,7 @@ public class MainActivity extends XActivity {
                     .show();
 //            new AlertDialog.Builder()
         });
+
     }
 
-    @Override
-    public Object newP() {
-        return null;
-    }
 }

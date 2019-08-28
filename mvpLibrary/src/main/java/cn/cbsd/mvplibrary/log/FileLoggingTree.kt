@@ -50,7 +50,7 @@ class FileLoggingTree(private val mContext: Context) : Timber.Tree() {
             bufferedWriter = BufferedWriter(writer)
             bufferedWriter.write("========================")
             bufferedWriter.newLine()
-            bufferedWriter.write("time:" + DateUtil.getCurrentTime())
+            bufferedWriter.write("time:" + DateUtil.currentTime)
             bufferedWriter.newLine()
             val threadName = Thread.currentThread().name
             bufferedWriter.write("threadName:$threadName")

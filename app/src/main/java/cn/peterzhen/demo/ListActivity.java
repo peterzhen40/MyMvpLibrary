@@ -95,7 +95,7 @@ public class ListActivity extends XActivity {
             }
         });
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         List<String> datas = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             datas.add("测试数据");

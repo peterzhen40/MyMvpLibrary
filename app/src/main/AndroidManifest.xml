@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".ListActivity"/>
         <activity android:name=".FrameActivity"/>
+        <activity android:name=".KotlinActivity" />
     </application>
 
 </manifest>

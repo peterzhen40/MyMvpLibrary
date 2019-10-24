@@ -20,7 +20,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
  * Created by wanglei on 2016/12/29.
  */
 
-abstract class XActivity : RxAppCompatActivity(), IView {
+abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
 
     protected @JvmField var context: Activity = this
     private var vDelegate: VDelegate? = VDelegateBase(context)
@@ -28,6 +28,7 @@ abstract class XActivity : RxAppCompatActivity(), IView {
     private var rxPermissions: RxPermissions? = null
 
     private var unbinder: Unbinder? = null
+    private var p: P? = null
     /**
      * 获取默认的UiState
      * @return
@@ -112,6 +113,7 @@ abstract class XActivity : RxAppCompatActivity(), IView {
             BusProvider.bus?.unregister(this)
         }
         getvDelegate()?.destroy()
+        p = null
         vDelegate = null
 
         ActivityCollector.removeActivity(this)
@@ -150,4 +152,13 @@ abstract class XActivity : RxAppCompatActivity(), IView {
         getvDelegate()?.dismissLoading()
     }
 
+    protected fun getP(): P? {
+        if (p == null) {
+            p = newP()
+            if (p != null) {
+                p!!.attachV(this)
+            }
+        }
+        return p
+    }
 }

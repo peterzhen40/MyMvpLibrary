@@ -13,7 +13,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import cn.cbsd.mvplibrary.kit.IntentUtil.cropImage
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -144,7 +143,7 @@ object ImageUtil {
     fun saveImage(context: Activity, data: Intent, requestCode: Int, imageView: ImageView) {
         var photo: Bitmap? = null
         val photoUri = data.data
-        cropImage(context, photoUri, 500, 500, requestCode)
+        IntentUtil.cropImage(context, photoUri, 500, 500, requestCode)
         if (photoUri != null) {
             photo = BitmapFactory.decodeFile(photoUri.path)
         }

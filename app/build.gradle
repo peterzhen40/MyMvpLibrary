@@ -12,7 +12,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -24,14 +24,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:26.0.2'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     testImplementation 'junit:junit:4.12'
     implementation project(':mvpLibrary')
     implementation 'com.github.FengChenSunshine:UiStatus:1.0.0'
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.6.0"
+    //annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //utils
     implementation 'com.blankj:utilcode:1.22.9'
 }

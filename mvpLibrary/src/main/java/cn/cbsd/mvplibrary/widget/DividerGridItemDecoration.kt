@@ -1,16 +1,12 @@
 package cn.cbsd.mvplibrary.widget
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.LayoutManager
-import android.support.v7.widget.RecyclerView.State
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 /**
@@ -26,7 +22,7 @@ class DividerGridItemDecoration(context: Context) : RecyclerView.ItemDecoration(
         a.recycle()
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
 
         drawHorizontal(c, parent)
         drawVertical(c, parent)
@@ -140,10 +136,10 @@ class DividerGridItemDecoration(context: Context) : RecyclerView.ItemDecoration(
     }
 
     override fun getItemOffsets(outRect: Rect, itemPosition: Int,
-                                parent: RecyclerView?) {
-        val spanCount = getSpanCount(parent!!)
-        val childCount = parent.adapter.itemCount
-        if (isLastRaw(parent, itemPosition, spanCount, childCount))
+                                parent: RecyclerView) {
+        val spanCount = getSpanCount(parent)
+        val childCount = parent.adapter?.itemCount
+        if (isLastRaw(parent, itemPosition, spanCount, childCount!!))
         // 如果是最后一行，则不需要绘制底部
         {
             outRect.set(0, 0, mDivider!!.intrinsicWidth, 0)

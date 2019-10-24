@@ -3,12 +3,11 @@ package cn.cbsd.mvplibrary.mvp
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-
+import androidx.fragment.app.Fragment
 import com.fengchen.uistatus.UiStatusController
 import com.trello.rxlifecycle2.components.support.RxFragment
 
@@ -18,7 +17,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment
 
 open class LazyFragment : RxFragment() {
     protected var myLayoutInflater: LayoutInflater? = null
-    protected var context: Activity? = null
+    protected lateinit var context: Activity
 
     protected var rootView: View? = null
         private set
@@ -188,7 +187,7 @@ open class LazyFragment : RxFragment() {
         }
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is Activity) {
             this.context = context
@@ -198,7 +197,7 @@ open class LazyFragment : RxFragment() {
 
     override fun onDetach() {
         super.onDetach()
-        context = null
+        //context = null
 
         try {
             val childFragmentManager = Fragment::class.java.getDeclaredField("mChildFragmentManager")

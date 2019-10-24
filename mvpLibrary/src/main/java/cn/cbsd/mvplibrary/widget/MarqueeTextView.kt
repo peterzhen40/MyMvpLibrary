@@ -4,12 +4,13 @@ import android.content.Context
 import android.graphics.Rect
 import android.text.TextUtils
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * Created by Army on 2016/7/4.
  * 跑马灯
  */
-class MarqueeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : android.support.v7.widget.AppCompatTextView(context, attrs) {
+class MarqueeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatTextView(context, attrs) {
 
     init {
         //设置单行

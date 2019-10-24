@@ -1,7 +1,7 @@
 package cn.peterzhen.demo;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import androidx.core.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import butterknife.BindView;

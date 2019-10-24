@@ -15,9 +15,9 @@ interface VDelegate {
 
     fun showSuccess(msg: String)
 
-    fun showError(msg: String?)
+    fun showError(msg: String)
 
-    fun showError(title: String?, msg: String?, confirmText: String? = "我知道了", listener: View.OnClickListener? = null)
+    fun showError(title: String, msg: String, confirmText: String = "我知道了", listener: View.OnClickListener? = null)
 
     fun showWarn(msg: String)
 

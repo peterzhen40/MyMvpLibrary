@@ -8,7 +8,7 @@ import cn.cbsd.mvplibrary.mvp.XActivity
  * @author zhenyanjun
  * @date   2019-08-27 17:20
  */
-class KotlinActivity :XActivity(){
+class KotlinActivity :XActivity<>(){
 
     override val layoutId: Int = R.layout.view_all_list
 

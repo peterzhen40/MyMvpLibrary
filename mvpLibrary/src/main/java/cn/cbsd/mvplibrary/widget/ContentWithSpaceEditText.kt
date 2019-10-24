@@ -1,11 +1,11 @@
 package cn.cbsd.mvplibrary.widget
 
 import android.content.Context
-import android.support.v7.widget.AppCompatEditText
 import android.text.*
 import android.text.method.DigitsKeyListener
 import android.util.AttributeSet
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
 import cn.cbsd.mvplibrary.R
 
 

@@ -17,13 +17,14 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
+import androidx.appcompat.widget.AppCompatEditText
 import cn.cbsd.mvplibrary.R
 
 /**
  * 带清除的Editext
  * Created by opprime on 16-7-21.
  */
-class ClearEditText : android.support.v7.widget.AppCompatEditText {
+class ClearEditText : AppCompatEditText {
     private var mContext: Context? = null
     private var mClearButton: Bitmap? = null
     private var mPaint: Paint? = null
@@ -91,7 +92,7 @@ class ClearEditText : android.support.v7.widget.AppCompatEditText {
     private fun buttonManager(canvas: Canvas) {
         when (mClearButtonMode) {
             ClearEditText.ClearButtonMode.ALWAYS -> drawBitmap(canvas, getRect(true))
-            ClearEditText.ClearButtonMode.WHILEEDITING -> drawBitmap(canvas, getRect(hasFocus() && text.length > 0))
+            ClearEditText.ClearButtonMode.WHILEEDITING -> drawBitmap(canvas, getRect(hasFocus() && text?.length!! > 0))
             ClearEditText.ClearButtonMode.UNLESSEDITING -> {
             }
             else -> drawBitmap(canvas, getRect(false))

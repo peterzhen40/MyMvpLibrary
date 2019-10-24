@@ -1,15 +1,15 @@
 package cn.cbsd.mvplibrary.widget
 
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by 赵梦阳 on 2016/5/7.
  */
 class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         outRect.left = space
         outRect.right = space
         outRect.bottom = space

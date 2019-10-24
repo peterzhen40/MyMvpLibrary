@@ -3,8 +3,8 @@ package cn.cbsd.mvplibrary.kit
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.StringRes
 import android.widget.Toast
+import androidx.annotation.StringRes
 
 
 /**
@@ -44,7 +44,7 @@ class ToastUtils private constructor() {
 
         val context: Context
             get() {
-                if (sContext != null) return sContext
+                if (sContext != null) return sContext as Context
                 throw NullPointerException("u should init first")
             }
 

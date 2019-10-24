@@ -21,7 +21,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment
 abstract class XFragment : RxFragment(), IView {
 
     private var vDelegate: VDelegate? = null
-    protected var context: Activity? = null
+    protected lateinit var context: Activity
     private var rootView: View? = null
     protected lateinit var myLayoutInflater: LayoutInflater
     private var rxPermissions: RxPermissions? = null
@@ -63,7 +63,7 @@ abstract class XFragment : RxFragment(), IView {
             bindUI(rootView)
         } else {
             val viewGroup = rootView!!.parent as ViewGroup
-            viewGroup?.removeView(rootView)
+            viewGroup.removeView(rootView)
         }
 
         if (useDefaultUiState()) {
@@ -91,7 +91,7 @@ abstract class XFragment : RxFragment(), IView {
     }
 
     override fun bindUI(rootView: View?) {
-        unbinder = KnifeKit.bind(this, rootView)
+        unbinder = KnifeKit.bind(this, rootView!!)
     }
 
     fun getvDelegate(): VDelegate? {
@@ -111,7 +111,7 @@ abstract class XFragment : RxFragment(), IView {
     //    return p
     //}
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is Activity) {
             this.context = context
@@ -120,7 +120,7 @@ abstract class XFragment : RxFragment(), IView {
 
     override fun onDetach() {
         super.onDetach()
-        context = null
+        //context = null
     }
 
     override fun useEventBus(): Boolean {

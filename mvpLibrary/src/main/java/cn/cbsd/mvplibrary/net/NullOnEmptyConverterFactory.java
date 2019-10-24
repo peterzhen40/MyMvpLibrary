@@ -1,11 +1,10 @@
 package cn.cbsd.mvplibrary.net;
 
-import android.support.annotation.Nullable;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import androidx.annotation.Nullable;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -26,7 +25,9 @@ public class NullOnEmptyConverterFactory extends Converter.Factory {
         return new Converter<ResponseBody, Object>() {
             @Override
             public Object convert(ResponseBody body) throws IOException {
-                if (body.contentLength() == 0) return null;
+                if (body.contentLength() == 0) {
+                    return null;
+                }
                 return delegate.convert(body);
             }
         };

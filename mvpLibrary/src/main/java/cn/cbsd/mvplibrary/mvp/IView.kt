@@ -7,7 +7,7 @@ import android.view.View
  * Created by wanglei on 2016/12/29.
  */
 
-interface IView {
+interface IView<P> {
 
     val layoutId: Int
 
@@ -29,4 +29,5 @@ interface IView {
 
     fun useDefaultUiState(): Boolean
 
+    fun newP(): P
 }

@@ -1,13 +1,11 @@
 package cn.cbsd.mvplibrary.widget
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by peter on 2017/1/15.
@@ -32,12 +30,12 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         mOrientation = orientation
     }
 
-    override fun onDraw(c: Canvas?, parent: RecyclerView?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView) {
 
         if (mOrientation == VERTICAL_LIST) {
-            drawVertical(c, parent!!)
+            drawVertical(c, parent)
         } else {
-            drawHorizontal(c, parent!!)
+            drawHorizontal(c, parent)
         }
 
     }
@@ -76,7 +74,7 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         }
     }
 
-    override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {
+    override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
         if (mOrientation == VERTICAL_LIST) {
             outRect.set(0, 0, 0, mDivider!!.intrinsicHeight)
         } else {

@@ -59,7 +59,7 @@ abstract class XLazyFragment: LazyFragment(), IView {
     }
 
     override fun bindUI(rootView: View?) {
-        unbinder = KnifeKit.bind(this, rootView)
+        unbinder = KnifeKit.bind(this, rootView!!)
     }
 
     override fun bindEvent() {

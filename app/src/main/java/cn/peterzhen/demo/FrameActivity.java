@@ -30,8 +30,4 @@ public class FrameActivity extends XActivity {
         fragmentTransaction.commit();
     }
 
-    @Override
-    public Object newP() {
-        return null;
-    }
 }

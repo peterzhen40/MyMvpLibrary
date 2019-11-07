@@ -12,7 +12,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
  * Created by wanglei on 2017/1/26.
  */
 
-abstract class XLazyFragment: LazyFragment(), IView {
+abstract class XLazyFragment : LazyFragment(), IView {
 
     private var vDelegate: VDelegate? = null
     //private var p: P? = null
@@ -59,7 +59,7 @@ abstract class XLazyFragment: LazyFragment(), IView {
     }
 
     override fun bindUI(rootView: View?) {
-        unbinder = KnifeKit.bind(this, rootView)
+        unbinder = KnifeKit.bind(this, rootView!!)
     }
 
     override fun bindEvent() {
@@ -69,16 +69,16 @@ abstract class XLazyFragment: LazyFragment(), IView {
 
     fun getvDelegate(): VDelegate? {
         if (vDelegate == null) {
-            vDelegate = VDelegateBase(context)
+            vDelegate = VDelegateBase(context!!)
         }
         return vDelegate
     }
 
-    //protected fun getP(): P? {
+    //protected fun getPresent(): P? {
     //    if (p == null) {
     //        p = newP()
     //        if (p != null) {
-    //            p!!.attachV(this)
+    //            p?.attachV(this)
     //        }
     //    }
     //    return p
@@ -89,13 +89,14 @@ abstract class XLazyFragment: LazyFragment(), IView {
         if (useEventBus()) {
             BusProvider.bus!!.unregister(this)
         }
-        //if (getP() != null) {
-        //    getP()!!.detachV()
-        //}
-        getvDelegate()!!.destroy()
 
-        //p = null
+        getvDelegate()!!.destroy()
         vDelegate = null
+
+        //if (getPresent() != null) {
+        //    getPresent()?.detachV()
+        //}
+        //p = null
     }
 
 

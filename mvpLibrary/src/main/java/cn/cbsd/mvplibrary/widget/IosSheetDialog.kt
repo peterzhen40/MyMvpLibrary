@@ -3,19 +3,12 @@ package cn.cbsd.mvplibrary.widget
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
-import android.view.Display
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-
-import java.util.ArrayList
-
 import cn.cbsd.mvplibrary.R
+import java.util.*
 
 /**
  * Author: liuqiang
@@ -191,7 +184,7 @@ class IosSheetDialog(private val context: Context) {
     inner class SheetItem(internal var name: String, internal var color: SheetItemColor?,
                           internal var itemClickListener: OnSheetItemClickListener)
 
-    enum class SheetItemColor private constructor(var name: String?) {
+    enum class SheetItemColor private constructor(var colorName: String?) {
         Blue("#037BFF"), Red("#FD4A2E")
     }
 }

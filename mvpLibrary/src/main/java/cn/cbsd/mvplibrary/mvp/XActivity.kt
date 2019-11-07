@@ -2,6 +2,7 @@ package cn.cbsd.mvplibrary.mvp
 
 import android.app.Activity
 import android.graphics.Color
+import android.net.IpPrefix
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -20,24 +21,22 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
  * Created by wanglei on 2016/12/29.
  */
 
-abstract class XActivity : RxAppCompatActivity(), IView {
+abstract class XActivity : RxAppCompatActivity(), IView{
 
     protected @JvmField var context: Activity = this
     private var vDelegate: VDelegate? = VDelegateBase(context)
+    //private var p: P? = null
 
     private var rxPermissions: RxPermissions? = null
 
     private var unbinder: Unbinder? = null
+
     /**
      * 获取默认的UiState
      * @return
      */
     var defaultUiController: UiStatusController? = null
         private set
-
-    override val optionsMenuId: Int
-        get() = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +113,11 @@ abstract class XActivity : RxAppCompatActivity(), IView {
         getvDelegate()?.destroy()
         vDelegate = null
 
+        //if (getPresent() != null) {
+        //    getPresent()?.detachV()
+        //}
+        //p = null
+
         ActivityCollector.removeActivity(this)
     }
 
@@ -150,4 +154,16 @@ abstract class XActivity : RxAppCompatActivity(), IView {
         getvDelegate()?.dismissLoading()
     }
 
+    override val optionsMenuId: Int
+        get() = 0
+
+    //protected fun getPresent(): P? {
+    //    if (p == null) {
+    //        p = newP()
+    //        if (p != null) {
+    //            p?.attachV(this)
+    //        }
+    //    }
+    //    return p
+    //}
 }

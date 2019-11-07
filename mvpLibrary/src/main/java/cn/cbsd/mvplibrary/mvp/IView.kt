@@ -29,4 +29,5 @@ interface IView {
 
     fun useDefaultUiState(): Boolean
 
+    //fun newP(): P
 }

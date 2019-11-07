@@ -12,7 +12,7 @@ import me.leefeng.promptlibrary.PromptDialog
  * Created by wanglei on 2016/12/29.
  */
 
-data class VDelegateBase constructor(private val context: Activity?) : VDelegate {
+data class VDelegateBase constructor(private val context: Activity) : VDelegate {
 
     override fun showError(msg: String?) {
         IosDialog(context).builder()
@@ -47,34 +47,34 @@ data class VDelegateBase constructor(private val context: Activity?) : VDelegate
 
     }
 
-    override fun showSuccess(msg: String) {
+    override fun showSuccess(msg: String?) {
         //成功信息
         MyToast.successBig(msg)
     }
 
-    override fun showWarn(msg: String) {
+    override fun showWarn(msg: String?) {
         //橙色警告信息
         MyToast.warn(msg)
     }
 
-    override fun showInfo(msg: String) {
+    override fun showInfo(msg: String?) {
         //提示信息
         MyToast.errorBig(msg)
     }
 
-    override fun showConfirm(msg: String) {
+    override fun showConfirm(msg: String?) {
         IosDialog(context).builder()
                 .setMessage(msg)
                 .setPositiveButton("确定", null)
                 .show()
     }
 
-    override fun show(msg: String) {
+    override fun show(msg: String?) {
         //一般信息，跟toast差不多
         MyToast.show(msg)
     }
 
-    override fun showToast(msg: String, duration: Int) {
+    override fun showToast(msg: String?, duration: Int) {
         Toast.makeText(context, msg, duration).show()
     }
 

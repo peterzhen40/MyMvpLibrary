@@ -63,7 +63,7 @@ class IosDialog(private val context: Context) {
         return this
     }
 
-    fun setTitle(title: String): IosDialog {
+    fun setTitle(title: String?): IosDialog {
         showTitle = true
         if ("" == title) {
             txt_title!!.text = "标题"
@@ -73,7 +73,7 @@ class IosDialog(private val context: Context) {
         return this
     }
 
-    fun setMessage(msg: String): IosDialog {
+    fun setMessage(msg: String?): IosDialog {
         showMsg = true
         if ("" == msg) {
             txt_msg!!.text = "内容"
@@ -88,7 +88,7 @@ class IosDialog(private val context: Context) {
         return this
     }
 
-    fun setPositiveButton(text: String,
+    fun setPositiveButton(text: String?,
                           listener: View.OnClickListener?): IosDialog {
         showPosBtn = true
         if ("" == text) {
@@ -103,7 +103,7 @@ class IosDialog(private val context: Context) {
         return this
     }
 
-    fun setNegativeButton(text: String,
+    fun setNegativeButton(text: String?,
                           listener: View.OnClickListener?): IosDialog {
         showNegBtn = true
         if ("" == text) {

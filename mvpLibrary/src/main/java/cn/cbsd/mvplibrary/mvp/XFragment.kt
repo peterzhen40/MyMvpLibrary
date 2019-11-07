@@ -26,6 +26,8 @@ abstract class XFragment : RxFragment(), IView {
     protected lateinit var myLayoutInflater: LayoutInflater
     private var rxPermissions: RxPermissions? = null
     private var unbinder: Unbinder? = null
+    //private var p: P? = null
+
     /**
      * 获取默认的UiState
      * @return
@@ -63,7 +65,7 @@ abstract class XFragment : RxFragment(), IView {
             bindUI(rootView)
         } else {
             val viewGroup = rootView!!.parent as ViewGroup
-            viewGroup?.removeView(rootView)
+            viewGroup.removeView(rootView)
         }
 
         if (useDefaultUiState()) {
@@ -91,25 +93,15 @@ abstract class XFragment : RxFragment(), IView {
     }
 
     override fun bindUI(rootView: View?) {
-        unbinder = KnifeKit.bind(this, rootView)
+        unbinder = KnifeKit.bind(this, rootView!!)
     }
 
     fun getvDelegate(): VDelegate? {
         if (vDelegate == null) {
-            vDelegate = VDelegateBase(context)
+            vDelegate = VDelegateBase(context!!)
         }
         return vDelegate
     }
-
-    //protected fun getP(): P? {
-    //    if (p == null) {
-    //        p = newP()
-    //        if (p != null) {
-    //            p!!.attachV(this)
-    //        }
-    //    }
-    //    return p
-    //}
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -131,15 +123,16 @@ abstract class XFragment : RxFragment(), IView {
     override fun onDestroyView() {
         super.onDestroyView()
         if (useEventBus()) {
-            BusProvider.bus!!.unregister(this)
+            BusProvider.bus?.unregister(this)
         }
-        //if (getP() != null) {
-        //    getP()!!.detachV()
-        //}
-        getvDelegate()!!.destroy()
-
-        //p = null
+        getvDelegate()?.destroy()
         vDelegate = null
+
+        //if (getPresent() != null) {
+        //    getPresent()?.detachV()
+        //}
+        //p = null
+
     }
 
     protected fun getRxPermissions(): RxPermissions? {
@@ -172,5 +165,13 @@ abstract class XFragment : RxFragment(), IView {
         private val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
     }
 
-
+    //protected fun getPresent(): P? {
+    //    if (p == null) {
+    //        p = newP()
+    //        if (p != null) {
+    //            p?.attachV(this)
+    //        }
+    //    }
+    //    return p
+    //}
 }

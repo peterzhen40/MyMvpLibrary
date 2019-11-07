@@ -25,9 +25,4 @@ public class DemoFragment extends XLazyFragment {
         uiController.changeUiStatus(UiStatus.LOAD_ERROR);
     }
 
-    @Override
-    public Object newP() {
-        return null;
-    }
-
 }

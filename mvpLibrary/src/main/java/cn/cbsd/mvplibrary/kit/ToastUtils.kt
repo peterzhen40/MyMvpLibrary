@@ -44,7 +44,7 @@ class ToastUtils private constructor() {
 
         val context: Context
             get() {
-                if (sContext != null) return sContext
+                if (sContext != null) return sContext as Context
                 throw NullPointerException("u should init first")
             }
 

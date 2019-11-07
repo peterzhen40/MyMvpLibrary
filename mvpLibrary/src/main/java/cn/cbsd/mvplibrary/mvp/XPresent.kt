@@ -4,7 +4,7 @@ package cn.cbsd.mvplibrary.mvp
  * Created by wanglei on 2016/12/29.
  */
 
-class XPresent<V : IView<*>> : IPresent<V> {
+class XPresent<V> : IPresent<V> where V : IView{
     private var v: V? = null
 
     override fun attachV(view: V) {

@@ -29,5 +29,8 @@ interface IView {
 
     fun useDefaultUiState(): Boolean
 
-    //fun newP(): P
+    /**
+     * 没用，只是用来兼容之前的版本
+     */
+    fun newP(): Any?
 }

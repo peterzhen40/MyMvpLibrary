@@ -166,4 +166,8 @@ abstract class XActivity : RxAppCompatActivity(), IView{
     //    }
     //    return p
     //}
+
+    override fun newP(): Any? {
+        return null
+    }
 }

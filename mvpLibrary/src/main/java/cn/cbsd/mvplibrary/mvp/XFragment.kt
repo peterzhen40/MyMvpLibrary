@@ -174,4 +174,8 @@ abstract class XFragment : RxFragment(), IView {
     //    }
     //    return p
     //}
+
+    override fun newP(): Any? {
+        return null
+    }
 }

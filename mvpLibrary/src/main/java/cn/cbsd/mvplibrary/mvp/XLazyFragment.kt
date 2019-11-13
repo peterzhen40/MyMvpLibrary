@@ -130,4 +130,7 @@ abstract class XLazyFragment : LazyFragment(), IView {
         private val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
     }
 
+    override fun newP(): Any? {
+        return null
+    }
 }

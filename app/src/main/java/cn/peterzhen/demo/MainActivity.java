@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.Nullable;
+
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.widget.IosDialog;
@@ -58,4 +60,9 @@ public class MainActivity extends XActivity {
 
     }
 
+    @Nullable
+    @Override
+    public Object newP() {
+        return null;
+    }
 }

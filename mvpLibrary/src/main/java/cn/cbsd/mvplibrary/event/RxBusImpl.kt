@@ -11,27 +11,25 @@ import com.blankj.rxbus.RxBus
 
 object RxBusImpl : IBus {
 
-    override fun register(`object`: Any) {}
+    override fun register(obj: Any) {}
 
-    override fun unregister(`object`: Any) {
-        RxBus.getDefault().unregister(`object`)
+    override fun unregister(obj: Any) {
+        RxBus.getDefault().unregister(obj)
     }
 
-    override fun post(event: IBus.AbsEvent) {
+    override fun post(event: AbsEvent) {
         RxBus.getDefault().post(event)
     }
 
-    override fun postSticky(event: IBus.AbsEvent) {
+    override fun postSticky(event: AbsEvent) {
         RxBus.getDefault().postSticky(event)
     }
 
-    fun <T : IBus.AbsEvent> subscribe(subscriber: Any,
-                                      callback: RxBus.Callback<T>) {
+    fun <T : AbsEvent> subscribe(subscriber: Any, callback: RxBus.Callback<T>) {
         RxBus.getDefault().subscribe(subscriber, callback)
     }
 
-    fun <T : IBus.AbsEvent> subscribeSticky(subscriber: Any,
-                                            callback: RxBus.Callback<T>) {
+    fun <T : AbsEvent> subscribeSticky(subscriber: Any,callback: RxBus.Callback<T>) {
         RxBus.getDefault().subscribeSticky(subscriber, callback)
     }
 

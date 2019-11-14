@@ -20,17 +20,17 @@ object NetConfig {
     private val clientMap = HashMap<String, OkHttpClient>()
 
 
-    fun getRetrofit(baseUrl: String, useRx: Boolean): Retrofit? {
+    fun getRetrofit(baseUrl: String, useRx: Boolean): Retrofit {
         return getRetrofit(baseUrl, null, useRx)
     }
 
 
-    fun getRetrofit(baseUrl: String, provider: NetProvider?, useRx: Boolean): Retrofit? {
+    fun getRetrofit(baseUrl: String, provider: NetProvider?, useRx: Boolean): Retrofit {
         var provider = provider
         if (Kits.Empty.check(baseUrl)) {
             throw IllegalStateException("baseUrl can not be null")
         }
-        if (retrofitMap[baseUrl] != null) return retrofitMap[baseUrl]
+        if (retrofitMap[baseUrl] != null) return retrofitMap[baseUrl]!!
 
         if (provider == null) {
             provider = providerMap[baseUrl]
@@ -42,7 +42,7 @@ object NetConfig {
 
         val builder = Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(getClient(baseUrl, provider!!)!!)
+                .client(getClient(baseUrl, provider!!))
                 //                .addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
         if (useRx) {
@@ -51,16 +51,16 @@ object NetConfig {
 
         val retrofit = builder.build()
         retrofitMap[baseUrl] = retrofit
-        providerMap[baseUrl] = provider!!
+        providerMap[baseUrl] = provider
 
         return retrofit
     }
 
-    private fun getClient(baseUrl: String, provider: NetProvider): OkHttpClient? {
+    private fun getClient(baseUrl: String, provider: NetProvider): OkHttpClient {
         if (Kits.Empty.check(baseUrl)) {
             throw IllegalStateException("baseUrl can not be null")
         }
-        if (clientMap[baseUrl] != null) return clientMap[baseUrl]
+        if (clientMap[baseUrl] != null) return clientMap[baseUrl]!!
 
         checkProvider(provider)
 

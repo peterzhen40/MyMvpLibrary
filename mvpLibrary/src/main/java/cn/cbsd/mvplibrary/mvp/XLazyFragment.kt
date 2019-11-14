@@ -14,10 +14,10 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 
 abstract class XLazyFragment : LazyFragment(), IView {
 
-    private var vDelegate: VDelegate? = null
+    private lateinit var vDelegate: VDelegate
     //private var p: P? = null
 
-    private var rxPermissions: RxPermissions? = null
+    private lateinit var rxPermissions: RxPermissions
     private var unbinder: Unbinder? = null
 
 
@@ -43,10 +43,13 @@ abstract class XLazyFragment : LazyFragment(), IView {
             bindUI(realRootView)
         }
         if (useEventBus()) {
-            BusProvider.bus!!.register(this)
+            BusProvider.bus.register(this)
         }
         bindEvent()
         initData(savedInstanceState)
+
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
     }
 
     public override fun useDefaultUiState(): Boolean {
@@ -67,10 +70,10 @@ abstract class XLazyFragment : LazyFragment(), IView {
     }
 
 
-    fun getvDelegate(): VDelegate? {
-        if (vDelegate == null) {
-            vDelegate = VDelegateBase(context!!)
-        }
+    fun getvDelegate(): VDelegate {
+        //if (vDelegate == null) {
+        //    vDelegate = VDelegateBase(context!!)
+        //}
         return vDelegate
     }
 
@@ -87,11 +90,11 @@ abstract class XLazyFragment : LazyFragment(), IView {
     override fun onDestoryLazy() {
         super.onDestoryLazy()
         if (useEventBus()) {
-            BusProvider.bus!!.unregister(this)
+            BusProvider.bus.unregister(this)
         }
 
-        getvDelegate()!!.destroy()
-        vDelegate = null
+        getvDelegate().destroy()
+        //vDelegate = null
 
         //if (getPresent() != null) {
         //    getPresent()?.detachV()
@@ -100,9 +103,8 @@ abstract class XLazyFragment : LazyFragment(), IView {
     }
 
 
-    protected fun getRxPermissions(): RxPermissions? {
-        rxPermissions = RxPermissions(activity!!)
-        rxPermissions!!.setLogging(CommonConfig.DEV)
+    protected fun getRxPermissions(): RxPermissions {
+        rxPermissions.setLogging(CommonConfig.DEV)
         return rxPermissions
     }
 
@@ -113,17 +115,17 @@ abstract class XLazyFragment : LazyFragment(), IView {
 
     override fun showLoading() {
         if (!activity!!.isFinishing)
-            getvDelegate()!!.showLoading("加载中...")
+            getvDelegate().showLoading("加载中...")
     }
 
     override fun showLoading(msg: String?) {
         if (activity != null && !activity!!.isFinishing) {
-            getvDelegate()!!.showLoading(msg)
+            getvDelegate().showLoading(msg)
         }
     }
 
     override fun hideLoading() {
-        getvDelegate()!!.dismissLoading()
+        getvDelegate().dismissLoading()
     }
 
     companion object {

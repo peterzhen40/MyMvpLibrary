@@ -20,11 +20,11 @@ import com.trello.rxlifecycle2.components.support.RxFragment
 
 abstract class XFragment : RxFragment(), IView {
 
-    private var vDelegate: VDelegate? = null
-    protected var context: Activity? = null
+    private lateinit var vDelegate: VDelegate
+    protected lateinit var context: Activity
     private var rootView: View? = null
     protected lateinit var myLayoutInflater: LayoutInflater
-    private var rxPermissions: RxPermissions? = null
+    private lateinit var rxPermissions: RxPermissions
     private var unbinder: Unbinder? = null
     //private var p: P? = null
 
@@ -32,8 +32,7 @@ abstract class XFragment : RxFragment(), IView {
      * 获取默认的UiState
      * @return
      */
-    var defaultUiController: UiStatusController? = null
-        private set
+    lateinit var defaultUiController: UiStatusController
 
     override val optionsMenuId: Int
         get() = 0
@@ -51,6 +50,9 @@ abstract class XFragment : RxFragment(), IView {
             }
             ft.commit()
         }
+
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -70,7 +72,7 @@ abstract class XFragment : RxFragment(), IView {
 
         if (useDefaultUiState()) {
             defaultUiController = UiStatusController.get()
-            rootView = defaultUiController!!.bindFragment(rootView!!)
+            rootView = defaultUiController.bindFragment(rootView!!)
         }
         return rootView
     }
@@ -86,7 +88,7 @@ abstract class XFragment : RxFragment(), IView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (useEventBus()) {
-            BusProvider.bus!!.register(this)
+            BusProvider.bus.register(this)
         }
         bindEvent()
         initData(savedInstanceState)
@@ -96,10 +98,7 @@ abstract class XFragment : RxFragment(), IView {
         unbinder = KnifeKit.bind(this, rootView!!)
     }
 
-    fun getvDelegate(): VDelegate? {
-        if (vDelegate == null) {
-            vDelegate = VDelegateBase(context!!)
-        }
+    fun getvDelegate(): VDelegate {
         return vDelegate
     }
 
@@ -112,7 +111,7 @@ abstract class XFragment : RxFragment(), IView {
 
     override fun onDetach() {
         super.onDetach()
-        context = null
+        //context = null
     }
 
     override fun useEventBus(): Boolean {
@@ -123,10 +122,10 @@ abstract class XFragment : RxFragment(), IView {
     override fun onDestroyView() {
         super.onDestroyView()
         if (useEventBus()) {
-            BusProvider.bus?.unregister(this)
+            BusProvider.bus.unregister(this)
         }
-        getvDelegate()?.destroy()
-        vDelegate = null
+        getvDelegate().destroy()
+        //vDelegate = null
 
         //if (getPresent() != null) {
         //    getPresent()?.detachV()
@@ -136,8 +135,7 @@ abstract class XFragment : RxFragment(), IView {
     }
 
     protected fun getRxPermissions(): RxPermissions? {
-        rxPermissions = RxPermissions(activity!!)
-        rxPermissions!!.setLogging(CommonConfig.DEV)
+        rxPermissions.setLogging(CommonConfig.DEV)
         return rxPermissions
     }
 
@@ -147,17 +145,17 @@ abstract class XFragment : RxFragment(), IView {
 
     override fun showLoading() {
         if (!activity!!.isFinishing)
-            getvDelegate()!!.showLoading("加载中...")
+            getvDelegate().showLoading("加载中...")
     }
 
     override fun showLoading(msg: String?) {
         if (activity != null && !activity!!.isFinishing) {
-            getvDelegate()!!.showLoading(msg)
+            getvDelegate().showLoading(msg)
         }
     }
 
     override fun hideLoading() {
-        getvDelegate()!!.dismissLoading()
+        getvDelegate().dismissLoading()
     }
 
     companion object {

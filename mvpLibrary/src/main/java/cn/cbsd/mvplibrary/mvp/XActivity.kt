@@ -23,11 +23,11 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 abstract class XActivity : RxAppCompatActivity(), IView{
 
-    protected @JvmField var context: Activity = this
-    private var vDelegate: VDelegate? = VDelegateBase(context)
+    protected lateinit var context: Activity
+    private lateinit var vDelegate: VDelegate
     //private var p: P? = null
 
-    private var rxPermissions: RxPermissions? = null
+    private lateinit var rxPermissions: RxPermissions
 
     private var unbinder: Unbinder? = null
 
@@ -35,8 +35,7 @@ abstract class XActivity : RxAppCompatActivity(), IView{
      * 获取默认的UiState
      * @return
      */
-    var defaultUiController: UiStatusController? = null
-        private set
+    lateinit var defaultUiController: UiStatusController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +58,10 @@ abstract class XActivity : RxAppCompatActivity(), IView{
 
         //子类默认竖屏
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        context = this
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
     }
 
     /**
@@ -78,27 +81,27 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         unbinder = KnifeKit.bind(this)
     }
 
-    fun getvDelegate(): VDelegate? {
+    fun getvDelegate(): VDelegate {
         return vDelegate
     }
 
     override fun onStart() {
         super.onStart()
         if (useEventBus()) {
-            BusProvider.bus?.register(this)
+            BusProvider.bus.register(this)
         }
     }
 
 
     override fun onResume() {
         super.onResume()
-        getvDelegate()?.resume()
+        getvDelegate().resume()
     }
 
 
     override fun onPause() {
         super.onPause()
-        getvDelegate()?.pause()
+        getvDelegate().pause()
     }
 
     override fun useEventBus(): Boolean {
@@ -108,10 +111,10 @@ abstract class XActivity : RxAppCompatActivity(), IView{
     override fun onDestroy() {
         super.onDestroy()
         if (useEventBus()) {
-            BusProvider.bus?.unregister(this)
+            BusProvider.bus.unregister(this)
         }
-        getvDelegate()?.destroy()
-        vDelegate = null
+        getvDelegate().destroy()
+        //vDelegate = null
 
         //if (getPresent() != null) {
         //    getPresent()?.detachV()
@@ -128,9 +131,8 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         return super.onCreateOptionsMenu(menu)
     }
 
-    protected fun getRxPermissions(): RxPermissions? {
-        rxPermissions = RxPermissions(this)
-        rxPermissions?.setLogging(CommonConfig.DEV)
+    protected fun getRxPermissions(): RxPermissions {
+        rxPermissions.setLogging(CommonConfig.DEV)
         return rxPermissions
     }
 
@@ -140,18 +142,18 @@ abstract class XActivity : RxAppCompatActivity(), IView{
 
     override fun showLoading() {
         if (!isFinishing) {
-            getvDelegate()?.showLoading("加载中...")
+            getvDelegate().showLoading("加载中...")
         }
     }
 
     override fun showLoading(msg: String?) {
         if (!isFinishing) {
-            getvDelegate()?.showLoading(msg)
+            getvDelegate().showLoading(msg)
         }
     }
 
     override fun hideLoading() {
-        getvDelegate()?.dismissLoading()
+        getvDelegate().dismissLoading()
     }
 
     override val optionsMenuId: Int

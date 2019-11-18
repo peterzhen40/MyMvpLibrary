@@ -40,6 +40,9 @@ abstract class XActivity : RxAppCompatActivity(), IView{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityCollector.addActivity(this)
+        context = this
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
 
         if (layoutId > 0) {
             setContentView(layoutId)
@@ -59,9 +62,6 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         //子类默认竖屏
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        context = this
-        vDelegate = VDelegateBase(context)
-        rxPermissions = RxPermissions(context)
     }
 
     /**

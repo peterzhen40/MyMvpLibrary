@@ -1,5 +1,6 @@
 package cn.peterzhen.demo;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import com.fengchen.uistatus.UiStatusController;
@@ -24,7 +25,13 @@ public class DemoFragment extends XLazyFragment {
         UiStatusController uiController = getDefaultUiController();
         uiController.changeUiStatus(UiStatus.LOAD_ERROR);
         //Router.newIntent(context)
-        getvDelegate().showError("","");
+        //FileUtil.FileSize.SIZETYPE_B
+        Application application = context.getApplication();
+        getvDelegate().show("test");
     }
 
+    @Override
+    public boolean useDefaultUiState() {
+        return true;
+    }
 }

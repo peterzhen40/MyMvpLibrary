@@ -25,6 +25,8 @@ abstract class XLazyFragment : LazyFragment(), IView {
         get() = 0
 
     override fun onCreateViewLazy(savedInstanceState: Bundle?) {
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
         super.onCreateViewLazy(savedInstanceState)
         if (savedInstanceState != null) {
             val isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN)
@@ -48,8 +50,6 @@ abstract class XLazyFragment : LazyFragment(), IView {
         bindEvent()
         initData(savedInstanceState)
 
-        vDelegate = VDelegateBase(context)
-        rxPermissions = RxPermissions(context)
     }
 
     public override fun useDefaultUiState(): Boolean {

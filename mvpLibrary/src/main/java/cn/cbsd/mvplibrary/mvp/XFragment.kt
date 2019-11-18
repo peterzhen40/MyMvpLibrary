@@ -51,8 +51,6 @@ abstract class XFragment : RxFragment(), IView {
             ft.commit()
         }
 
-        vDelegate = VDelegateBase(context)
-        rxPermissions = RxPermissions(context)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -106,6 +104,8 @@ abstract class XFragment : RxFragment(), IView {
         super.onAttach(context)
         if (context is Activity) {
             this.context = context
+            vDelegate = VDelegateBase(context)
+            rxPermissions = RxPermissions(context)
         }
     }
 

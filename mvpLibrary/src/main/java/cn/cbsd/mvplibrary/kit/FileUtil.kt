@@ -577,10 +577,10 @@ object FileUtil {
     }
 
     object FileSize {
-        val SIZETYPE_B = 1// 获取文件大小单位为B的double值
-        val SIZETYPE_KB = 2// 获取文件大小单位为KB的double值
-        val SIZETYPE_MB = 3// 获取文件大小单位为MB的double值
-        val SIZETYPE_GB = 4// 获取文件大小单位为GB的double值
+        const val SIZETYPE_B = 1// 获取文件大小单位为B的double值
+        const val SIZETYPE_KB = 2// 获取文件大小单位为KB的double值
+        const val SIZETYPE_MB = 3// 获取文件大小单位为MB的double值
+        const val SIZETYPE_GB = 4// 获取文件大小单位为GB的double值
 
         /**
          * 获取文件指定文件的指定单位的大小

@@ -13,9 +13,16 @@ import me.leefeng.promptlibrary.PromptDialog
  */
 
 data class VDelegateBase constructor(private val context: Activity) : VDelegate {
-
     override fun showError(msg: String?) {
         IosDialog(context).builder()
+                .setMessage(msg)
+                .setPositiveButton("我知道了", null)
+                .show()
+    }
+
+    override fun showError(title: String?, msg: String?) {
+        IosDialog(context).builder()
+                .setTitle(title)
                 .setMessage(msg)
                 .setPositiveButton("我知道了", null)
                 .show()

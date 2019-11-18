@@ -208,16 +208,19 @@ class Router private constructor() {
 
     companion object {
 
+        @JvmField
         val RES_NONE = -1
 
         private var callback: RouterCallback? = null
 
+        @JvmStatic
         fun newIntent(context: Activity): Router {
             val router = Router()
             router.from = context
             return router
         }
 
+        @JvmStatic
         fun newIntent(context: Fragment): Router {
             val router = Router()
             router.fromFragment = context
@@ -225,10 +228,12 @@ class Router private constructor() {
             return router
         }
 
+        @JvmStatic
         fun pop(activity: Activity) {
             activity.finish()
         }
 
+        @JvmStatic
         fun setCallback(callback: RouterCallback) {
             Router.callback = callback
         }

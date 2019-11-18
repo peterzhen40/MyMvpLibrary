@@ -19,9 +19,11 @@ object DateUtil {
     val DEFAULT_DATE = CommonConfig.Pattern.DEFAULT_DATE
     val DEFAULT_TIME = CommonConfig.Pattern.DEFAULT_TIME
 
+    @JvmStatic
     val currentDate: String
         get() = SimpleDateFormat(DEFAULT_DATE).format(Date())
 
+    @JvmStatic
     val currentTime: String
         get() {
             val date = Date()
@@ -29,6 +31,7 @@ object DateUtil {
             return format.format(date)
         }
 
+    @JvmStatic
     val currentTimeNianYue: String
         get() {
             val date = Date()
@@ -49,26 +52,31 @@ object DateUtil {
     private val mdhmLink = SimpleDateFormat("MM-dd HH:mm")
     private val nianyueri = SimpleDateFormat("yyyy年MM月dd日")
 
+    @JvmStatic
     fun getFormatDate(date: Date, pattern: String): String {
         val dateFormat = SimpleDateFormat(pattern, Locale.getDefault())
         return dateFormat.format(date)
     }
 
+    @JvmStatic
     fun getFormatDate(date: Date): String {
         val dateFormat = SimpleDateFormat(DEFAULT_DATE, Locale.getDefault())
         return dateFormat.format(date)
     }
 
+    @JvmStatic
     fun getFormatDateTime(date: Date): String {
         val dateFormat = SimpleDateFormat(DEFAULT_DATE_TIME, Locale.getDefault())
         return dateFormat.format(date)
     }
 
+    @JvmStatic
     fun getFormatTime(date: Date): String {
         val dateFormat = SimpleDateFormat(DEFAULT_TIME, Locale.getDefault())
         return dateFormat.format(date)
     }
 
+    @JvmStatic
     fun getDate(dateStr: String, pattern: String): Date? {
         if (TextUtils.isEmpty(dateStr)) {
             return null
@@ -91,6 +99,7 @@ object DateUtil {
      * @param newPattern 新格式
      * @return
      */
+    @JvmStatic
     fun getNewFormatDate(dateStr: String, oldPattern: String, newPattern: String): String {
         return if (TextUtils.isEmpty(dateStr)) {
             ""
@@ -108,10 +117,12 @@ object DateUtil {
         }
     }
 
+    @JvmStatic
     fun getCurrentDate(pattern: String): String {
         return SimpleDateFormat(pattern).format(Date())
     }
 
+    @JvmStatic
     fun getCurrentTime(pattern: String): String {
         val date = Date()
         val format = SimpleDateFormat(pattern)
@@ -121,6 +132,7 @@ object DateUtil {
     /**
      * 年月日[2015-07-28]
      */
+    @JvmStatic
     fun getYmd(timeInMills: Long): String {
         return ymd.format(Date(timeInMills))
     }
@@ -128,46 +140,57 @@ object DateUtil {
     /**
      * 年月日
      */
+    @JvmStatic
     fun getNianYueRi(timeInMills: Long): String {
         return nianyueri.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getYmdDot(timeInMills: Long): String {
         return ymdDot.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getYmdhms(timeInMills: Long): String {
         return ymdhms.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getYmdhmsS(timeInMills: Long): String {
         return ymdhmss.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getYmdhm(timeInMills: Long): String {
         return ymdhm.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getHm(timeInMills: Long): String {
         return hm.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getMd(timeInMills: Long): String {
         return md.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getMdhm(timeInMills: Long): String {
         return mdhm.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getMdhmLink(timeInMills: Long): String {
         return mdhmLink.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getM(timeInMills: Long): String {
         return m.format(Date(timeInMills))
     }
 
+    @JvmStatic
     fun getD(timeInMills: Long): String {
         return d.format(Date(timeInMills))
     }
@@ -178,6 +201,7 @@ object DateUtil {
      * @param timeInMills
      * @return
      */
+    @JvmStatic
     fun isToday(timeInMills: Long): Boolean {
         val dest = getYmd(timeInMills)
         val now = getYmd(Calendar.getInstance().timeInMillis)
@@ -191,6 +215,7 @@ object DateUtil {
      * @param bMills
      * @return
      */
+    @JvmStatic
     fun isSameDay(aMills: Long, bMills: Long): Boolean {
         val aDay = getYmd(aMills)
         val bDay = getYmd(bMills)
@@ -203,6 +228,7 @@ object DateUtil {
      * @param mills
      * @return
      */
+    @JvmStatic
     fun getYear(mills: Long): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = mills
@@ -215,6 +241,7 @@ object DateUtil {
      * @param mills
      * @return
      */
+    @JvmStatic
     fun getMonth(mills: Long): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = mills
@@ -228,6 +255,7 @@ object DateUtil {
      * @param mills
      * @return
      */
+    @JvmStatic
     fun getDaysInMonth(mills: Long): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = mills
@@ -250,6 +278,7 @@ object DateUtil {
      * @param mills
      * @return
      */
+    @JvmStatic
     fun getWeek(mills: Long): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = mills
@@ -263,6 +292,7 @@ object DateUtil {
      * @param mills
      * @return
      */
+    @JvmStatic
     fun getFirstOfMonth(mills: Long): Long {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = mills
@@ -274,6 +304,7 @@ object DateUtil {
     /**
      * 是否在今天之后
      */
+    @JvmStatic
     fun isDateAfter(tempView: DatePicker): Boolean {
         val mCalendar = Calendar.getInstance()
         val tempCalendar = Calendar.getInstance()
@@ -285,6 +316,7 @@ object DateUtil {
     /**
      * 是否在今天之后<br></br> 包括今天
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isAfterToday(date: Date): Boolean {
         val today = Date()
@@ -307,6 +339,7 @@ object DateUtil {
     /**
      * 是否为同一天
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isSameDay(date: Date, date2: Date): Boolean {
         val sdf = SimpleDateFormat("yyyyMMdd")
@@ -326,6 +359,7 @@ object DateUtil {
     /**
      * 是否为同一天
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isSameDay(dateStr: String, date2Str: String): Boolean {
         val sdf = SimpleDateFormat("yyyyMMdd")
@@ -343,6 +377,7 @@ object DateUtil {
     /**
      * 是否当天
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isToday(dateStr: String): Boolean {
         if (!TextUtils.isEmpty(dateStr)) {
@@ -364,6 +399,7 @@ object DateUtil {
     /**
      * 是否为同一天 格式默认为yyyyMMdd HH:mm格式，以空格分隔取前位
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isSameDay(dateStr: String, date2Str: String, pattern: String): Boolean {
         val commonSdf = SimpleDateFormat("yyyyMMdd")
@@ -384,6 +420,7 @@ object DateUtil {
     /**
      * 第一个时间是否在第二个时间之后 开始时间必须在后者时间之前
      */
+    @JvmStatic
     @SuppressLint("SimpleDateFormat")
     fun isAfterPreTime(dateStr: String, date2Str: String): Boolean {
         val sdf = SimpleDateFormat("yyyyMMdd HH:mm")

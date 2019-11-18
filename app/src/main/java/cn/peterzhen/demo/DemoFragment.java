@@ -23,6 +23,8 @@ public class DemoFragment extends XLazyFragment {
     public void initData(Bundle savedInstanceState) {
         UiStatusController uiController = getDefaultUiController();
         uiController.changeUiStatus(UiStatus.LOAD_ERROR);
+        //Router.newIntent(context)
+        getvDelegate().showError("","");
     }
 
 }

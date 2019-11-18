@@ -2,7 +2,7 @@
  * Copyright (c) 2018. 广州中爆数字信息科技股份有限公司.
  */
 
-package cn.cbsd.mvplibrary.widget
+package cn.cbsd.mvplibrary.kit
 
 import android.graphics.Canvas
 import android.graphics.Color

@@ -129,7 +129,7 @@ abstract class XLazyFragment : LazyFragment(), IView {
     }
 
     companion object {
-        private val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
+        private const val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
     }
 
     override fun newP(): Any? {

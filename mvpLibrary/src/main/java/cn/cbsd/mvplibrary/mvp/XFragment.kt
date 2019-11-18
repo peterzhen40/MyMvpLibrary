@@ -160,7 +160,7 @@ abstract class XFragment : RxFragment(), IView {
 
     companion object {
 
-        private val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
+        private const val STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN"
     }
 
     //protected fun getPresent(): P? {

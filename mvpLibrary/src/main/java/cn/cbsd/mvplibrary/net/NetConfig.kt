@@ -19,12 +19,12 @@ object NetConfig {
     private val retrofitMap = HashMap<String, Retrofit>()
     private val clientMap = HashMap<String, OkHttpClient>()
 
-
+    @JvmStatic
     fun getRetrofit(baseUrl: String, useRx: Boolean): Retrofit {
         return getRetrofit(baseUrl, null, useRx)
     }
 
-
+    @JvmStatic
     fun getRetrofit(baseUrl: String, provider: NetProvider?, useRx: Boolean): Retrofit {
         var provider = provider
         if (Kits.Empty.check(baseUrl)) {
@@ -102,33 +102,37 @@ object NetConfig {
         }
     }
 
+    @JvmStatic
     fun getRetrofitMap(): Map<String, Retrofit> {
         return retrofitMap
     }
 
+    @JvmStatic
     fun getClientMap(): Map<String, OkHttpClient> {
         return clientMap
     }
 
     var commonProvider: NetProvider? = null
-        private set
 
     val connectTimeoutMills = 10 * 1000L
     val readTimeoutMills = 10 * 1000L
 
-
+    @JvmStatic
     operator fun <S> get(baseUrl: String, service: Class<S>): S {
         return getRetrofit(baseUrl, true)!!.create(service)
     }
 
+    @JvmStatic
     fun registerProvider(provider: NetProvider) {
         NetConfig.commonProvider = provider
     }
 
+    @JvmStatic
     fun registerProvider(baseUrl: String, provider: NetProvider) {
         providerMap[baseUrl] = provider
     }
 
+    @JvmStatic
     fun clearCache() {
         retrofitMap.clear()
         clientMap.clear()

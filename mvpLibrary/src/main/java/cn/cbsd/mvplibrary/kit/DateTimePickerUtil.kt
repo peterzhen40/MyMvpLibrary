@@ -20,6 +20,7 @@ object DateTimePickerUtil {
     /**
      * 同时选择日期与时间 记住选择的日期
      */
+    @JvmStatic
     @JvmOverloads
     fun dateTimePicker(activity: Activity, target: TextView, pattern: String = "", selectDate: Calendar = Calendar.getInstance(),
                        startDate: Calendar? = null, endDate: Calendar? = null) {
@@ -52,10 +53,12 @@ object DateTimePickerUtil {
         timePickerView.show(target)
     }
 
+    @JvmStatic
     fun dateTimePicker(activity: Activity, target: TextView, startDate: Calendar, endDate: Calendar) {
         dateTimePicker(activity, target, "", Calendar.getInstance(), startDate, endDate)
     }
 
+    @JvmStatic
     fun dateTimePicker(activity: Activity, target: TextView, selectDate: Calendar, startDate: Calendar, endDate: Calendar) {
         dateTimePicker(activity, target, "", selectDate, startDate, endDate)
     }
@@ -63,6 +66,7 @@ object DateTimePickerUtil {
     /**
      * 兼容旧版本
      */
+    @JvmStatic
     fun dateTimePicker(activity: Activity, target: TextView, minDate: Long, maxDate: Long) {
         val now = Calendar.getInstance()
         val startDate = Calendar.getInstance()
@@ -93,6 +97,7 @@ object DateTimePickerUtil {
     /**
      * 选择日期
      */
+    @JvmStatic
     @JvmOverloads
     fun datePicker(activity: Activity, target: TextView, pattern: String = "", selectDate: Calendar = Calendar.getInstance(),
                    startDate: Calendar? = null, endDate: Calendar? = null, isCycle: Boolean = true) {
@@ -124,10 +129,12 @@ object DateTimePickerUtil {
         timePickerView.show(target)
     }
 
+    @JvmStatic
     fun datePicker(activity: Activity, target: TextView, startDate: Calendar, endDate: Calendar) {
         datePicker(activity, target, "", Calendar.getInstance(), startDate, endDate, true)
     }
 
+    @JvmStatic
     fun datePicker(activity: Activity, target: TextView, startDate: Calendar, endDate: Calendar, isCycle: Boolean) {
         datePicker(activity, target, "", Calendar.getInstance(), startDate, endDate, isCycle)
     }
@@ -135,6 +142,7 @@ object DateTimePickerUtil {
     /**
      * 兼容旧版本
      */
+    @JvmStatic
     fun datePicker(activity: Activity, target: TextView, minDate: Long, maxDate: Long) {
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
@@ -165,6 +173,7 @@ object DateTimePickerUtil {
     /**
      * 选择时间
      */
+    @JvmStatic
     fun timePicker(activity: Activity, target: TextView) {
         val timePickerView = TimePickerBuilder(activity, OnTimeSelectListener { date, v -> target.text = DateUtil.getFormatTime(date) })
                 .setType(booleanArrayOf(false, false, false, true, true, true))//时分秒

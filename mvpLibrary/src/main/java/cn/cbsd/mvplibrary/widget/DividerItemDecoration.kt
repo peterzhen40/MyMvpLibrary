@@ -1,13 +1,11 @@
 package cn.cbsd.mvplibrary.widget
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 
 /**
  * Created by peter on 2017/1/15.
@@ -88,8 +86,8 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
 
         private val ATTRS = intArrayOf(android.R.attr.listDivider)
 
-        val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
+        const val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
 
-        val VERTICAL_LIST = LinearLayoutManager.VERTICAL
+        const val VERTICAL_LIST = LinearLayoutManager.VERTICAL
     }
 }

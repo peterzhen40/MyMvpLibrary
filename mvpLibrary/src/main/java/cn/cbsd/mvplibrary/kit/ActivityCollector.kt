@@ -15,6 +15,7 @@ object ActivityCollector {
     /**
      * 添加一个Activity到Activity列表中.
      */
+    @JvmStatic
     fun addActivity(activity: Activity) {
         if (!mActivities.contains(activity)) {
             mActivities.add(activity)
@@ -24,6 +25,7 @@ object ActivityCollector {
     /**
      * 从Activity列表中删除指定的Activity.
      */
+    @JvmStatic
     fun removeActivity(activity: Activity) {
         if (mActivities.contains(activity)) {
             mActivities.remove(activity)
@@ -33,6 +35,7 @@ object ActivityCollector {
     /**
      * 关闭所有的Activity, 退出程序.
      */
+    @JvmStatic
     fun finishAll() {
         for (activity in mActivities) {
             if (!activity.isFinishing) {

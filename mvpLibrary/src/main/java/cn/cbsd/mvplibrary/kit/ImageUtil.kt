@@ -33,6 +33,7 @@ object ImageUtil {
      * @param requestCode
      * @param data
      */
+    @JvmStatic
     fun doPhoto(context: Activity, data: Intent?, requestCode: Int, value: Int, editText: EditText,
                 imageView: ImageView, photoUri: Uri?) {
         var photoUri = photoUri
@@ -85,6 +86,7 @@ object ImageUtil {
      * @param path
      * @return
      */
+    @JvmStatic
     fun readPictureDegree(path: String): Int {
         var degree = 0
         try {
@@ -140,6 +142,7 @@ object ImageUtil {
      * @param requestCode
      * @param imageView
      */
+    @JvmStatic
     fun saveImage(context: Activity, data: Intent, requestCode: Int, imageView: ImageView) {
         var photo: Bitmap? = null
         val photoUri = data.data
@@ -164,6 +167,7 @@ object ImageUtil {
      * @param context
      * @return
      */
+    @JvmStatic
     fun saveCamera(context: Activity, data: Intent, cameraUri: Uri?, editText: EditText,
                    imageView: ImageView): Boolean {
         try {
@@ -207,6 +211,7 @@ object ImageUtil {
     /**
      * 将base64字符串转成url
      */
+    @JvmStatic
     fun decoderBase64ToUrl(base64: String): String {
         var url = ""
         val fileName = System.currentTimeMillis().toString() + ".jpg"
@@ -228,6 +233,7 @@ object ImageUtil {
     }
 
     @Throws(Exception::class)
+    @JvmStatic
     fun saveBitmap(bitmap: Bitmap): String {
         val file = FileUtil.getOutputMediaFile(FileUtil.MEDIA_TYPE_IMAGE)
         var fOut: FileOutputStream? = null

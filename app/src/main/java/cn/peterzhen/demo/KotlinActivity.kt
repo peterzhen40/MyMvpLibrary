@@ -2,6 +2,7 @@ package cn.peterzhen.demo
 
 import android.os.Bundle
 import cn.cbsd.mvplibrary.mvp.XActivity
+import cn.cbsd.mvplibrary.router.Router
 
 /**
  * 当前类注释:
@@ -14,6 +15,6 @@ class KotlinActivity :XActivity(){
 
     override fun initData(savedInstanceState: Bundle?) {
         getvDelegate()?.showError(msg = "test")
-        context
+        Router.newIntent(context)
     }
 }

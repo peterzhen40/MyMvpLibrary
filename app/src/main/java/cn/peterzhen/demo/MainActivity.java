@@ -12,7 +12,6 @@ import org.jetbrains.annotations.Nullable;
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.router.Router;
-import cn.cbsd.mvplibrary.widget.IosDialog;
 import es.dmoral.toasty.MyToast;
 
 public class MainActivity extends XActivity {
@@ -45,12 +44,15 @@ public class MainActivity extends XActivity {
         });
 
         mButton2.setOnClickListener(view -> {
-            new IosDialog(context).builder()
-                    .setTitle("提示")
-                    .setMessage("获取数据异常")
-                    .setPositiveButton("我知道了",null)
-                    .setNegativeButton("取消",null)
-                    .show();
+            Router.newIntent(context)
+                    .to(KotlinActivity.class)
+                    .launch();
+            //new IosDialog(context).builder()
+            //        .setTitle("提示")
+            //        .setMessage("获取数据异常")
+            //        .setPositiveButton("我知道了",null)
+            //        .setNegativeButton("取消",null)
+            //        .show();
 //            new AlertDialog.Builder()
         });
 

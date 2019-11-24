@@ -1,21 +1,17 @@
 package cn.peterzhen.demo
 
-import android.content.Intent
 import android.os.Bundle
 import cn.cbsd.mvplibrary.base.ReturnModel
-import cn.cbsd.mvplibrary.mvp.IView
 import cn.cbsd.mvplibrary.mvp.XActivity
 import cn.peterzhen.demo.net.LoginModel
 import cn.peterzhen.demo.net.LoginResult
 import cn.peterzhen.demo.net.MyService
-import es.dmoral.toasty.MyToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -75,29 +71,6 @@ class KotlinActivity :XActivity(){
             }
         } catch (e: Exception) {
             throw e
-        }
-    }
-}
-
-fun XActivity.handleError(showError:Boolean = true, isDialog:Boolean = true,e:Exception){
-    if (e is HttpException) {
-        val httpException = e as HttpException
-        if (httpException.code() == 403) {
-            MyToast.errorBig("登录已超时，正在跳转登录页")
-            //token失效处理
-            //LoginSp.setLoginState(AppKit.getContext(), false)
-            //val intent = Intent(, LoginActivity::class.java)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            //AppKit.getContext().startActivity(intent)
-        } else {
-            if (showError) {
-                if ()
-                getvDelegate().showError(ErrorKit.getErrorMessage(t))
-            }
-        }
-    } else {
-        if (showError) {
-            getvDelegate().showError(ErrorKit.getErrorMessage(t))
         }
     }
 }

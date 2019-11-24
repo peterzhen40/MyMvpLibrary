@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.router.Router;
+import cn.cbsd.mvplibrary.widget.IosSheetDialog;
 import es.dmoral.toasty.MyToast;
 
 public class MainActivity extends XActivity {
@@ -55,6 +56,11 @@ public class MainActivity extends XActivity {
             //        .show();
 //            new AlertDialog.Builder()
         });
+
+        new IosSheetDialog(context)
+                .builder()
+                .addSheetItem("", IosSheetDialog.SheetItemColor.Blue,which -> {
+                });
 
         Application application = context.getApplication();
         getvDelegate().show("test");

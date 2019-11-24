@@ -3,9 +3,12 @@ package cn.peterzhen.demo;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.blankj.rxbus.RxBus;
 import com.fengchen.uistatus.UiStatusController;
 import com.fengchen.uistatus.annotation.UiStatus;
 
+import cn.cbsd.mvplibrary.event.AbsEvent;
+import cn.cbsd.mvplibrary.event.BusProvider;
 import cn.cbsd.mvplibrary.mvp.XLazyFragment;
 
 /**
@@ -28,6 +31,12 @@ public class DemoFragment extends XLazyFragment {
         //FileUtil.FileSize.SIZETYPE_B
         Application application = context.getApplication();
         getvDelegate().show("test");
+        BusProvider.getBus().subscribe(this, new RxBus.Callback<AbsEvent>() {
+            @Override
+            public void onEvent(AbsEvent absEvent) {
+
+            }
+        });
     }
 
     @Override

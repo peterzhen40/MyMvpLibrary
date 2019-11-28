@@ -55,7 +55,7 @@ allprojects {
 publish {
     userOrg = 'peterzhen40'                   //bintray注册的用户名
     groupId = 'cn.cbsd'                      //compile引用时的第1部分groupId
-    artifactId = 'MyMvpLibrary-kotlin'                     //compile引用时的第2部分项目名
+    artifactId = 'MyMvpLibrary-androidx'                     //compile引用时的第2部分项目名
     publishVersion = rootProject.versionName    //compile引用时的第3部分版本号
     desc = 'mvp框架'                              //项目描述
     website = 'https://github.com/peterzhen40/MyMvpLibrary'     //项目主页

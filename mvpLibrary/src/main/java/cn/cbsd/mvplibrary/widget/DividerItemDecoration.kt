@@ -30,12 +30,12 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         mOrientation = orientation
     }
 
-    override fun onDraw(c: Canvas?, parent: RecyclerView?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView) {
 
         if (mOrientation == VERTICAL_LIST) {
-            drawVertical(c, parent!!)
+            drawVertical(c, parent)
         } else {
-            drawHorizontal(c, parent!!)
+            drawHorizontal(c, parent)
         }
 
     }
@@ -74,7 +74,7 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         }
     }
 
-    override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {
+    override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
         if (mOrientation == VERTICAL_LIST) {
             outRect.set(0, 0, 0, mDivider!!.intrinsicHeight)
         } else {

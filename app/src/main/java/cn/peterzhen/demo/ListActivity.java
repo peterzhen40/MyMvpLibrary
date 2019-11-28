@@ -2,11 +2,6 @@ package cn.peterzhen.demo;
 
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.Nullable;
-import androidx.core.widget.SwipeRefreshLayout;
-import androidx.appcompat.widget.LinearLayoutManager;
-import androidx.appcompat.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +15,11 @@ import com.fengchen.uistatus.listener.OnLayoutStatusChangedListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.widget.MarqueeTextView;

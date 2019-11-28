@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @author zhenyanjun
  * @date   2019-08-27 17:20
  */
-class KotlinActivity :XActivity<>(){
+class KotlinActivity :XActivity(){
 
     override val layoutId: Int = R.layout.view_all_list
 

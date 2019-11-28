@@ -9,10 +9,10 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.OrientationHelper
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * 用于设置RecyclerView的分隔线<br></br>
@@ -64,7 +64,7 @@ class Divider(divider: Drawable, orientation: Int) : RecyclerView.ItemDecoration
         this.bottomMargin = bottom
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         if (mOrientation == LinearLayoutManager.HORIZONTAL) {
             drawHorizontal(c, parent)
@@ -104,7 +104,7 @@ class Divider(divider: Drawable, orientation: Int) : RecyclerView.ItemDecoration
         }
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         if (mOrientation == LinearLayoutManager.HORIZONTAL) {
             outRect.set(0, 0, leftMargin + width + rightMargin, 0)

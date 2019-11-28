@@ -1,9 +1,9 @@
 package cn.peterzhen.demo;
 
 import android.os.Bundle;
-import androidx.core.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 

@@ -83,7 +83,7 @@ class IosSheetDialog(private val context: Context) {
      * 条目名称
      * @param color
      * 条目字体颜色，设置null则默认蓝色
-     * @param listener /(which:Int)->Unit)
+     * @param listener /(which:Int)->Unit) 函数类型也可以，但java需要适配Unit
      * @return
      */
     fun addSheetItem(strItem: String, color: SheetItemColor,

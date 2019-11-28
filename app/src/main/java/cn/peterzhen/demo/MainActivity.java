@@ -60,6 +60,7 @@ public class MainActivity extends XActivity {
         new IosSheetDialog(context)
                 .builder()
                 .addSheetItem("", IosSheetDialog.SheetItemColor.Blue,which -> {
+                    getvDelegate().show("函数类型test");
                 });
 
         Application application = context.getApplication();

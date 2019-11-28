@@ -32,6 +32,7 @@ object CodecKit {
          * @param buffer
          * @return
          */
+        @JvmStatic
         fun getMessageDigest(buffer: ByteArray): String? {
             val hexDigits = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f')
             try {
@@ -57,6 +58,7 @@ object CodecKit {
          * @param buffer
          * @return
          */
+        @JvmStatic
         fun getRawDigest(buffer: ByteArray): ByteArray? {
             try {
                 val mdTemp = MessageDigest.getInstance(Algorithm.MD5.type)
@@ -103,6 +105,7 @@ object CodecKit {
          * @param filePath 文件路径
          * @return
          */
+        @JvmStatic
         fun getMD5(filePath: String?): String? {
             if (filePath == null) {
                 return null
@@ -120,11 +123,12 @@ object CodecKit {
          * @param file
          * @return
          */
+        @JvmStatic
         fun getMD5(file: File): String? {
             return getMD5(file, 1024 * 100)
         }
 
-
+        @JvmStatic
         private fun getMD5(file: File?, bufLen: Int): String? {
             if (file == null || bufLen <= 0 || !file.exists()) {
                 return null
@@ -155,18 +159,22 @@ object CodecKit {
 
     object BASE64 {
 
+        @JvmStatic
         fun encode(plain: ByteArray): ByteArray {
             return Base64.encode(plain, Base64.DEFAULT)
         }
 
+        @JvmStatic
         fun encodeToString(plain: ByteArray): String {
             return Base64.encodeToString(plain, Base64.DEFAULT)
         }
 
+        @JvmStatic
         fun decode(text: String): ByteArray {
             return Base64.decode(text, Base64.DEFAULT)
         }
 
+        @JvmStatic
         fun decode(text: ByteArray): ByteArray {
             return Base64.decode(text, Base64.DEFAULT)
         }

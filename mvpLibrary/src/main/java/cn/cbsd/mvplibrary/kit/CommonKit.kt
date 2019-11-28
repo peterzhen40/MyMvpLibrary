@@ -51,6 +51,7 @@ object CommonKit {
     // Thanks @Joe!
     // http://stackoverflow.com/a/2853253/950427
     // Finally, combine the values we have found by using the UUID class to create a unique identifier
+    @JvmStatic
     val uniquePsuedoID: String
         get() {
             val m_szDevIDShort = "35" + Build.BOARD.length % 10 + Build.BRAND.length % 10 +
@@ -72,6 +73,7 @@ object CommonKit {
      * @param activity
      * @return
      */
+    @JvmStatic
     fun isActivityDestroy(activity: Activity?): Boolean {
         return if (activity == null || activity.isFinishing || Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed) {
             true
@@ -83,11 +85,13 @@ object CommonKit {
     /**
      * 隐藏软键盘
      */
+    @JvmStatic
     fun hideSoftKeyboard(view: View, context: Context) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    @JvmStatic
     fun openSoftKeyboard(context: Context) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
@@ -99,6 +103,7 @@ object CommonKit {
      * @param d
      * @return
      */
+    @JvmStatic
     fun decimalFormat(d: Double): String {
         val df = DecimalFormat("#.00")
         return df.format(d)
@@ -110,6 +115,7 @@ object CommonKit {
      * @param d
      * @return
      */
+    @JvmStatic
     fun bigDecimalFormat(d: Double): Double {
         val bigDecimal = BigDecimal(d)
         return bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toDouble()
@@ -119,6 +125,7 @@ object CommonKit {
      * 当 Handler 闲置就向它发送空 Message，以确保不会发生 Message 的内存泄漏
      * (dialog内存泄露解决)
      */
+    @JvmStatic
     fun flushStackLocalLeaks(looper: Looper) {
         val handler = Handler(looper)
         handler.post {
@@ -179,6 +186,7 @@ object CommonKit {
      * @param context
      * @return
      */
+    @JvmStatic
     fun getUniversalID(context: Context): String {
         val androidId: String
         //外部储存
@@ -219,9 +227,11 @@ object CommonKit {
      * @param context
      * @return
      */
+    @JvmStatic
     fun getUniqueId(context: Context): String? {
         val androidID = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         val id = androidID + Build.SERIAL
         return MD5Util.parseStrToMd5U32(id)
     }
+
 }

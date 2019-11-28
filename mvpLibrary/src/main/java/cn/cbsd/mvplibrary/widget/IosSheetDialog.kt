@@ -83,7 +83,7 @@ class IosSheetDialog(private val context: Context) {
      * 条目名称
      * @param color
      * 条目字体颜色，设置null则默认蓝色
-     * @param listener
+     * @param listener /(which:Int)->Unit) 函数类型也可以，但java需要适配Unit
      * @return
      */
     fun addSheetItem(strItem: String, color: SheetItemColor,
@@ -165,6 +165,7 @@ class IosSheetDialog(private val context: Context) {
             // 点击事件
             textView.setOnClickListener {
                 sheetItem.itemClickListener.onClick(i)
+                //sheetItem.itemClickListener.invoke(i)
                 dialog!!.dismiss()
             }
 
@@ -177,9 +178,12 @@ class IosSheetDialog(private val context: Context) {
         dialog!!.show()
     }
 
-    interface OnSheetItemClickListener {
-        fun onClick(which: Int)
-    }
+    /**
+     * kotlin的接口不能SAM，java的才行
+     */
+    //interface OnSheetItemClickListener {
+    //    fun onClick(which: Int)
+    //}
 
     inner class SheetItem(internal var name: String, internal var color: SheetItemColor?,
                           internal var itemClickListener: OnSheetItemClickListener)

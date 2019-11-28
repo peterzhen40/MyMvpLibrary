@@ -6,17 +6,13 @@ package cn.cbsd.mvplibrary.event
 
 interface IBus {
 
-    fun register(`object`: Any)
+    fun register(obj: Any)
 
-    fun unregister(`object`: Any)
+    fun unregister(obj: Any)
 
     fun post(event: AbsEvent)
 
     fun postSticky(event: AbsEvent)
 
-
-    abstract class AbsEvent {
-        abstract val tag: Int
-    }
 
 }

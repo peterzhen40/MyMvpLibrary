@@ -6,6 +6,8 @@ package cn.cbsd.mvplibrary.event
 
 object BusProvider {
 
-    val bus:RxBusImpl? =null
+    val bus:RxBusImpl
+        @JvmStatic
+        get() = RxBusImpl
 
 }

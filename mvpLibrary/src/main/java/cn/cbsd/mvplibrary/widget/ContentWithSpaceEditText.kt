@@ -206,9 +206,9 @@ class ContentWithSpaceEditText : AppCompatEditText {
 
     companion object {
 
-        val TYPE_PHONE = 0
-        val TYPE_BANK_CARD = 1
-        val TYPE_ID_CARD = 2
+        const val TYPE_PHONE = 0
+        const val TYPE_BANK_CARD = 1
+        const val TYPE_ID_CARD = 2
     }
 
 }

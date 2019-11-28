@@ -2,6 +2,7 @@ package cn.cbsd.mvplibrary.mvp
 
 import android.app.Activity
 import android.graphics.Color
+import android.net.IpPrefix
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -20,29 +21,28 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
  * Created by wanglei on 2016/12/29.
  */
 
-abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
+abstract class XActivity : RxAppCompatActivity(), IView{
 
-    protected @JvmField var context: Activity = this
-    private var vDelegate: VDelegate? = VDelegateBase(context)
+    protected lateinit var context: Activity
+    private lateinit var vDelegate: VDelegate
+    //private var p: P? = null
 
-    private var rxPermissions: RxPermissions? = null
+    private lateinit var rxPermissions: RxPermissions
 
     private var unbinder: Unbinder? = null
-    private var p: P? = null
+
     /**
      * 获取默认的UiState
      * @return
      */
-    var defaultUiController: UiStatusController? = null
-        private set
-
-    override val optionsMenuId: Int
-        get() = 0
-
+    lateinit var defaultUiController: UiStatusController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityCollector.addActivity(this)
+        context = this
+        vDelegate = VDelegateBase(context)
+        rxPermissions = RxPermissions(context)
 
         if (layoutId > 0) {
             setContentView(layoutId)
@@ -61,6 +61,7 @@ abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
 
         //子类默认竖屏
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
     }
 
     /**
@@ -80,27 +81,27 @@ abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
         unbinder = KnifeKit.bind(this)
     }
 
-    fun getvDelegate(): VDelegate? {
+    fun getvDelegate(): VDelegate {
         return vDelegate
     }
 
     override fun onStart() {
         super.onStart()
         if (useEventBus()) {
-            BusProvider.bus?.register(this)
+            BusProvider.bus.register(this)
         }
     }
 
 
     override fun onResume() {
         super.onResume()
-        getvDelegate()?.resume()
+        getvDelegate().resume()
     }
 
 
     override fun onPause() {
         super.onPause()
-        getvDelegate()?.pause()
+        getvDelegate().pause()
     }
 
     override fun useEventBus(): Boolean {
@@ -110,11 +111,15 @@ abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
     override fun onDestroy() {
         super.onDestroy()
         if (useEventBus()) {
-            BusProvider.bus?.unregister(this)
+            BusProvider.bus.unregister(this)
         }
-        getvDelegate()?.destroy()
-        p = null
-        vDelegate = null
+        getvDelegate().destroy()
+        //vDelegate = null
+
+        //if (getPresent() != null) {
+        //    getPresent()?.detachV()
+        //}
+        //p = null
 
         ActivityCollector.removeActivity(this)
     }
@@ -126,9 +131,8 @@ abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
         return super.onCreateOptionsMenu(menu)
     }
 
-    protected fun getRxPermissions(): RxPermissions? {
-        rxPermissions = RxPermissions(this)
-        rxPermissions?.setLogging(CommonConfig.DEV)
+    protected fun getRxPermissions(): RxPermissions {
+        rxPermissions.setLogging(CommonConfig.DEV)
         return rxPermissions
     }
 
@@ -138,27 +142,34 @@ abstract class  XActivity<P : XPresent<*>> : RxAppCompatActivity(), IView<P> {
 
     override fun showLoading() {
         if (!isFinishing) {
-            getvDelegate()?.showLoading("加载中...")
+            getvDelegate().showLoading("加载中...")
         }
     }
 
     override fun showLoading(msg: String?) {
         if (!isFinishing) {
-            getvDelegate()?.showLoading(msg)
+            getvDelegate().showLoading(msg)
         }
     }
 
     override fun hideLoading() {
-        getvDelegate()?.dismissLoading()
+        getvDelegate().dismissLoading()
     }
 
-    protected fun getP(): P? {
-        if (p == null) {
-            p = newP()
-            if (p != null) {
-                p!!.attachV(this)
-            }
-        }
-        return p
+    override val optionsMenuId: Int
+        get() = 0
+
+    //protected fun getPresent(): P? {
+    //    if (p == null) {
+    //        p = newP()
+    //        if (p != null) {
+    //            p?.attachV(this)
+    //        }
+    //    }
+    //    return p
+    //}
+
+    override fun newP(): Any? {
+        return null
     }
 }

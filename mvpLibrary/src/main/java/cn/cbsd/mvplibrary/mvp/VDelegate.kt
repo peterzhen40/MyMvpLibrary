@@ -13,21 +13,23 @@ interface VDelegate {
 
     fun destroy()
 
-    fun showSuccess(msg: String)
+    fun showSuccess(msg: String?)
 
-    fun showError(msg: String)
+    fun showError(msg: String?)
 
-    fun showError(title: String, msg: String, confirmText: String = "我知道了", listener: View.OnClickListener? = null)
+    fun showError(title: String?, msg: String?)
 
-    fun showWarn(msg: String)
+    fun showError(title: String?, msg: String?, confirmText: String? = "我知道了", listener: View.OnClickListener? = null)
 
-    fun showInfo(msg: String)
+    fun showWarn(msg: String?)
 
-    fun showConfirm(msg: String)
+    fun showInfo(msg: String?)
 
-    fun show(msg: String)
+    fun showConfirm(msg: String?)
 
-    fun showToast(msg: String, duration: Int)
+    fun show(msg: String?)
+
+    fun showToast(msg: String?, duration: Int)
 
     fun showLoading(msg: String?)
 

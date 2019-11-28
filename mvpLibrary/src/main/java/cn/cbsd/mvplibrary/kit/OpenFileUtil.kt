@@ -2,9 +2,8 @@ package cn.cbsd.mvplibrary.kit
 
 import android.content.Intent
 import android.net.Uri
-
 import java.io.File
-import java.util.Locale
+import java.util.*
 
 /**
  * 当前类注释:
@@ -28,6 +27,7 @@ object OpenFileUtil {
     val DATA_TYPE_TXT = "text/plain"
     val DATA_TYPE_PDF = "application/pdf"
 
+    @JvmStatic
     fun openFile(filePath: String): Intent? {
 
         val file = File(filePath)
@@ -62,6 +62,7 @@ object OpenFileUtil {
     }
 
     // Android获取一个用于打开A所有文件的intent
+    @JvmStatic
     fun getAllIntent(param: String): Intent {
 
         val intent = Intent()

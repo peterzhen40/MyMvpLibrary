@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
         //开源bintray插件
-        classpath 'com.novoda:bintray-release:0.8.0'
+        classpath 'com.novoda:bintray-release:0.9.1'
         //kotlin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -36,6 +36,6 @@ ext {
     targetSdkVersion = 28
     compileSdkVersion = 28
     buildToolsVersion = "28.0.3"
-    versionCode = 21
-    versionName = "2.0"
+    versionCode = 29
+    versionName = "2.0.6"
 }

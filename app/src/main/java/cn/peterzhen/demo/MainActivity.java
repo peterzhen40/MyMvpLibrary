@@ -1,14 +1,18 @@
 package cn.peterzhen.demo;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.Nullable;
+
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
-import cn.cbsd.mvplibrary.widget.IosDialog;
+import cn.cbsd.mvplibrary.router.Router;
+import cn.cbsd.mvplibrary.widget.IosSheetDialog;
 import es.dmoral.toasty.MyToast;
 
 public class MainActivity extends XActivity {
@@ -34,28 +38,39 @@ public class MainActivity extends XActivity {
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                //                startActivity(intent);
-                //new IosDialog(getContext()).builder()
-                //        .setMessage("获取数据异常")
-                //        .setPositiveButton("我知道了",null)
-                //        .setNegativeButton("取消",null)
-                //        .show();
-                //                MyToast.show("获取数据错误");
-                //Router.Companion.newIntent(context)
+                Router.newIntent(context)
+                        .to(FrameActivity.class)
+                        .launch();
             }
         });
 
         mButton2.setOnClickListener(view -> {
-            new IosDialog(context).builder()
-                    .setTitle("提示")
-                    .setMessage("获取数据异常")
-                    .setPositiveButton("我知道了",null)
-                    .setNegativeButton("取消",null)
-                    .show();
+            Router.newIntent(context)
+                    .to(KotlinActivity.class)
+                    .launch();
+            //new IosDialog(context).builder()
+            //        .setTitle("提示")
+            //        .setMessage("获取数据异常")
+            //        .setPositiveButton("我知道了",null)
+            //        .setNegativeButton("取消",null)
+            //        .show();
 //            new AlertDialog.Builder()
         });
 
+        new IosSheetDialog(context)
+                .builder()
+                .addSheetItem("", IosSheetDialog.SheetItemColor.Blue,which -> {
+                    getvDelegate().show("函数类型test");
+                });
+
+        Application application = context.getApplication();
+        getvDelegate().show("test");
+
     }
 
+    @Nullable
+    @Override
+    public Object newP() {
+        return null;
+    }
 }

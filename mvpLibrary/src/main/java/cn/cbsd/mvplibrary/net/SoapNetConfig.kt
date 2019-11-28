@@ -9,7 +9,6 @@ package cn.cbsd.mvplibrary.net
 object SoapNetConfig {
 
     var provider: SoapProvider? = null
-        private set
 
     fun registerProvider(provider: SoapProvider) {
         this.provider = provider

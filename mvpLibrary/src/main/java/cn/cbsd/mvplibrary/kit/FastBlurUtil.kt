@@ -8,6 +8,7 @@ import android.graphics.Bitmap
  */
 object FastBlurUtil {
 
+    @JvmStatic
     fun doBlur(sentBitmap: Bitmap, radius: Int, canReuseInBitmap: Boolean): Bitmap? {
 
         // Stack Blur v1.0 from

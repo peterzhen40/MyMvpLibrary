@@ -16,6 +16,7 @@ import java.io.File
  */
 object VersionAdaptUtils {
 
+    @JvmStatic
     fun getUriFromFile(intent: Intent, context: Context, file: File): Uri? {
         var fileUri: Uri? = null
         //7.0以上

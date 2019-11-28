@@ -18,6 +18,7 @@ object MD5Util {
      * @Author: lulei
      * @Description:  32位小写MD5
      */
+    @JvmStatic
     fun parseStrToMd5L32(str: String): String? {
         var reStr: String? = null
         try {
@@ -46,6 +47,7 @@ object MD5Util {
      * @Author: lulei
      * @Description: 32位大写MD5
      */
+    @JvmStatic
     fun parseStrToMd5U32(str: String): String? {
         var reStr = parseStrToMd5L32(str)
         if (reStr != null) {
@@ -61,6 +63,7 @@ object MD5Util {
      * @Author: lulei
      * @Description: 16位小写MD5
      */
+    @JvmStatic
     fun parseStrToMd5U16(str: String): String? {
         var reStr = parseStrToMd5L32(str)
         if (reStr != null) {
@@ -76,6 +79,7 @@ object MD5Util {
      * @Author: lulei
      * @Description: 16位大写MD5
      */
+    @JvmStatic
     fun parseStrToMd5L16(str: String): String? {
         var reStr = parseStrToMd5L32(str)
         if (reStr != null) {

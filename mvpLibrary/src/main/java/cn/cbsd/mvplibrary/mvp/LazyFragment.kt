@@ -16,11 +16,10 @@ import com.trello.rxlifecycle2.components.support.RxFragment
  */
 
 open class LazyFragment : RxFragment() {
-    protected var myLayoutInflater: LayoutInflater? = null
+    protected lateinit var myLayoutInflater: LayoutInflater
     protected lateinit var context: Activity
 
     protected var rootView: View? = null
-        private set
     private var container: ViewGroup? = null
 
     private var isInitReady = false
@@ -29,13 +28,12 @@ open class LazyFragment : RxFragment() {
     private val isLazyEnable = true
     private var isStart = false
     private lateinit var layout: FrameLayout
-    var defaultUiController: UiStatusController? = null
-        private set
+    lateinit var defaultUiController: UiStatusController
 
     protected val realRootView: View?
         get() {
             if (rootView != null) {
-                if (rootView is FrameLayout && TAG_ROOT_FRAMELAYOUT == rootView!!.tag) {
+                if (rootView is FrameLayout && TAG_ROOT_FRAMELAYOUT == rootView?.tag) {
                     return (rootView as FrameLayout).getChildAt(0)
                 }
             }
@@ -72,7 +70,7 @@ open class LazyFragment : RxFragment() {
                 if (mInflater == null && context != null) {
                     mInflater = LayoutInflater.from(context)
                 }
-                layout = FrameLayout(context!!)
+                layout = FrameLayout(context)
                 layout.tag = TAG_ROOT_FRAMELAYOUT
 
                 val view  = getPreviewLayout(mInflater, layout)
@@ -98,16 +96,16 @@ open class LazyFragment : RxFragment() {
 
     protected fun setContentView(layoutResID: Int) {
         if (isLazyEnable && rootView != null && rootView!!.parent != null) {
-            layout!!.removeAllViews()
-            var view = myLayoutInflater!!.inflate(layoutResID, layout, false)
+            layout.removeAllViews()
+            var view = myLayoutInflater.inflate(layoutResID, layout, false)
             if (useDefaultUiState()) {
-                view = defaultUiController!!.bindFragment(view)
+                view = defaultUiController.bindFragment(view)
             }
-            layout!!.addView(view)
+            layout.addView(view)
         } else {
-            rootView = myLayoutInflater!!.inflate(layoutResID, container, false)
+            rootView = myLayoutInflater.inflate(layoutResID, container, false)
             if (useDefaultUiState()) {
-                rootView = defaultUiController!!.bindFragment(rootView!!)
+                rootView = defaultUiController.bindFragment(rootView!!)
             }
         }
     }
@@ -115,14 +113,14 @@ open class LazyFragment : RxFragment() {
     protected fun setContentView(view: View) {
         var view = view
         if (isLazyEnable && rootView != null && rootView!!.parent != null) {
-            layout!!.removeAllViews()
+            layout.removeAllViews()
             if (useDefaultUiState()) {
-                view = defaultUiController!!.bindFragment(view)
+                view = defaultUiController.bindFragment(view)
             }
-            layout!!.addView(view)
+            layout.addView(view)
         } else {
             if (useDefaultUiState()) {
-                view = defaultUiController!!.bindFragment(view)
+                view = defaultUiController.bindFragment(view)
             }
             rootView = view
         }
@@ -187,7 +185,7 @@ open class LazyFragment : RxFragment() {
         }
     }
 
-    override fun onAttach(context: Context) {
+    override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is Activity) {
             this.context = context
@@ -214,9 +212,9 @@ open class LazyFragment : RxFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rootView = null
-        container = null
-        myLayoutInflater = null
+        //rootView = null
+        //container = null
+        //myLayoutInflater = null
         if (isInitReady) {
             onDestoryLazy()
         }
@@ -253,11 +251,11 @@ open class LazyFragment : RxFragment() {
 
     companion object {
 
-        private val STATE_VISIBLE = 1 //用户可见
-        private val STATE_NO_SET = -1 //未设置值
-        private val STATE_NO_VISIBLE = 0  //用户不可见
+        private const val STATE_VISIBLE = 1 //用户可见
+        private const val STATE_NO_SET = -1 //未设置值
+        private const val STATE_NO_VISIBLE = 0  //用户不可见
 
-        private val TAG_ROOT_FRAMELAYOUT = "tag_root_framelayout"
+        private const val TAG_ROOT_FRAMELAYOUT = "tag_root_framelayout"
     }
 
 

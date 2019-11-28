@@ -37,6 +37,7 @@ class Kits {
          * @param context
          * @return
          */
+        @JvmStatic
         fun getVersionCode(context: Context): Int {
             val pManager = context.packageManager
             var packageInfo: PackageInfo? = null
@@ -56,6 +57,7 @@ class Kits {
          * @param context
          * @return
          */
+        @JvmStatic
         fun getVersionName(context: Context): String {
             val pManager = context.packageManager
             var packageInfo: PackageInfo? = null
@@ -75,6 +77,7 @@ class Kits {
          * @param filePath
          * @return
          */
+        @JvmStatic
         fun installNormal(context: Context, filePath: String): Boolean {
             val i = Intent(Intent.ACTION_VIEW)
             val file = java.io.File(filePath)
@@ -95,6 +98,7 @@ class Kits {
          * @param packageName
          * @return
          */
+        @JvmStatic
         fun uninstallNormal(context: Context, packageName: String?): Boolean {
             if (packageName == null || packageName.length == 0) {
                 return false
@@ -114,6 +118,7 @@ class Kits {
          * @param packageName 包名
          * @return
          */
+        @JvmStatic
         fun isSystemApplication(context: Context?, packageName: String?): Boolean {
             if (context == null) {
                 return false
@@ -140,6 +145,7 @@ class Kits {
          * @param packageName
          * @return
          */
+        @JvmStatic
         fun isTopActivity(context: Context?, packageName: String): Boolean? {
             if (context == null || TextUtils.isEmpty(packageName)) {
                 return null
@@ -166,6 +172,7 @@ class Kits {
          * @param key
          * @return
          */
+        @JvmStatic
         fun getAppMetaData(context: Context?, key: String): String? {
             if (context == null || TextUtils.isEmpty(key)) {
                 return null
@@ -195,6 +202,7 @@ class Kits {
          * @param context
          * @return
          */
+        @JvmStatic
         fun isApplicationInBackground(context: Context): Boolean {
             val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             val taskList = am.getRunningTasks(1)
@@ -210,18 +218,22 @@ class Kits {
 
 
     object Dimens {
+        @JvmStatic
         fun dpToPx(context: Context, dp: Float): Float {
             return dp * context.resources.displayMetrics.density
         }
 
+        @JvmStatic
         fun pxToDp(context: Context, px: Float): Float {
             return px / context.resources.displayMetrics.density
         }
 
+        @JvmStatic
         fun dpToPxInt(context: Context, dp: Float): Int {
             return (dpToPx(context, dp) + 0.5f).toInt()
         }
 
+        @JvmStatic
         fun pxToDpCeilInt(context: Context, px: Float): Int {
             return (pxToDp(context, px) + 0.5f).toInt()
         }
@@ -297,6 +309,7 @@ class Kits {
          * @return if file not exist, return null, else return content of file
          * @throws RuntimeException if an error occurs while operator BufferedReader
          */
+        @JvmStatic
         fun readFile(filePath: String, charsetName: String): StringBuilder? {
             val file = java.io.File(filePath)
             val fileContent = StringBuilder("")
@@ -333,6 +346,7 @@ class Kits {
          * @return return false if content is empty, true otherwise
          * @throws RuntimeException if an error occurs while operator FileWriter
          */
+        @JvmStatic
         @JvmOverloads
         fun writeFile(filePath: String, content: String, append: Boolean = false): Boolean {
             if (TextUtils.isEmpty(content)) {
@@ -361,6 +375,7 @@ class Kits {
          * @return return false if contentList is empty, true otherwise
          * @throws RuntimeException if an error occurs while operator FileWriter
          */
+        @JvmStatic
         @JvmOverloads
         fun writeFile(filePath: String, contentList: List<String>?, append: Boolean = false): Boolean {
             if (contentList == null || contentList.isEmpty()) {
@@ -394,6 +409,7 @@ class Kits {
          * @return return true
          * @throws RuntimeException if an error occurs while operator FileOutputStream
          */
+        @JvmStatic
         @JvmOverloads
         fun writeFile(filePath: String?, stream: InputStream, append: Boolean = false): Boolean {
             return writeFile(if (filePath != null) java.io.File(filePath) else null, stream, append)
@@ -408,6 +424,7 @@ class Kits {
          * @return return true
          * @throws RuntimeException if an error occurs while operator FileOutputStream
          */
+        @JvmStatic
         @JvmOverloads
         fun writeFile(file: java.io.File?, stream: InputStream, append: Boolean = false): Boolean {
             var o: OutputStream? = null
@@ -438,6 +455,7 @@ class Kits {
          * @param sourceFilePath
          * @param destFilePath
          */
+        @JvmStatic
         fun moveFile(sourceFilePath: String, destFilePath: String) {
             if (TextUtils.isEmpty(sourceFilePath) || TextUtils.isEmpty(destFilePath)) {
                 throw RuntimeException("Both sourceFilePath and destFilePath cannot be null.")
@@ -451,6 +469,7 @@ class Kits {
          * @param srcFile
          * @param destFile
          */
+        @JvmStatic
         fun moveFile(srcFile: java.io.File, destFile: java.io.File) {
             val rename = srcFile.renameTo(destFile)
             if (!rename) {
@@ -467,6 +486,7 @@ class Kits {
          * @return
          * @throws RuntimeException if an error occurs while operator FileOutputStream
          */
+        @JvmStatic
         fun copyFile(sourceFilePath: String, destFilePath: String): Boolean {
             var inputStream: InputStream? = null
             try {
@@ -486,6 +506,7 @@ class Kits {
          * @return if file not exist, return null, else return content of file
          * @throws RuntimeException if an error occurs while operator BufferedReader
          */
+        @JvmStatic
         fun readFileToList(filePath: String, charsetName: String): List<String>? {
             val file = java.io.File(filePath)
             val fileContent = ArrayList<String>()
@@ -533,6 +554,7 @@ class Kits {
          * @return file name from path, not include suffix
          * @see
          */
+        @JvmStatic
         fun getFileNameWithoutExtension(filePath: String): String {
             if (TextUtils.isEmpty(filePath)) {
                 return filePath
@@ -571,6 +593,7 @@ class Kits {
          * @param filePath
          * @return file name from path, include suffix
          */
+        @JvmStatic
         fun getFileName(filePath: String): String {
             if (TextUtils.isEmpty(filePath)) {
                 return filePath
@@ -603,6 +626,7 @@ class Kits {
          * @param filePath
          * @return
          */
+        @JvmStatic
         fun getFolderName(filePath: String?): String? {
 
             if (TextUtils.isEmpty(filePath)) {
@@ -636,6 +660,7 @@ class Kits {
          * @param filePath
          * @return
          */
+        @JvmStatic
         fun getFileExtension(filePath: String): String {
             if (TextUtils.isEmpty(filePath)) {
                 return filePath
@@ -667,6 +692,7 @@ class Kits {
          *  * if target directory already exists, return true
          *
          */
+        @JvmStatic
         fun makeDirs(filePath: String?): Boolean {
             val folderName = getFolderName(filePath)
             if (TextUtils.isEmpty(folderName)) {
@@ -682,6 +708,7 @@ class Kits {
          * @return
          * @see .makeDirs
          */
+        @JvmStatic
         fun makeFolders(filePath: String): Boolean {
             return makeDirs(filePath)
         }
@@ -692,6 +719,7 @@ class Kits {
          * @param filePath
          * @return
          */
+        @JvmStatic
         fun isFileExist(filePath: String): Boolean {
             if (TextUtils.isEmpty(filePath)) {
                 return false
@@ -707,6 +735,7 @@ class Kits {
          * @param directoryPath
          * @return
          */
+        @JvmStatic
         fun isFolderExist(directoryPath: String): Boolean {
             if (TextUtils.isEmpty(directoryPath)) {
                 return false
@@ -727,6 +756,7 @@ class Kits {
          * @param path
          * @return
          */
+        @JvmStatic
         fun deleteFile(path: String): Boolean {
             if (TextUtils.isEmpty(path)) {
                 return true
@@ -762,6 +792,7 @@ class Kits {
          * @param path
          * @return returns the length of this file in bytes. returns -1 if the file does not exist.
          */
+        @JvmStatic
         fun getFileSize(path: String): Long {
             if (TextUtils.isEmpty(path)) {
                 return -1
@@ -809,6 +840,7 @@ class Kits {
          *
          * @param closeable
          */
+        @JvmStatic
         fun close(closeable: Closeable?) {
             if (closeable != null) {
                 try {
@@ -840,6 +872,7 @@ class Kits {
          * @param timeInMills
          * @return
          */
+        @JvmStatic
         fun getYmd(timeInMills: Long): String {
             return ymd.format(java.util.Date(timeInMills))
         }
@@ -1062,19 +1095,22 @@ class Kits {
 
     object Empty {
 
-
+        @JvmStatic
         fun check(obj: Any?): Boolean {
             return obj == null
         }
 
+        @JvmStatic
         fun check(list: List<*>?): Boolean {
             return list == null || list.isEmpty()
         }
 
+        @JvmStatic
         fun check(array: Array<Any>?): Boolean {
             return array == null || array.size == 0
         }
 
+        @JvmStatic
         fun check(str: String?): Boolean {
             return str == null || "" == str
         }

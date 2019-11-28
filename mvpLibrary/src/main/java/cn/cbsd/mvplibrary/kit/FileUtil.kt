@@ -110,6 +110,7 @@ object FileUtil {
     /**
      * 初始化应用路径
      */
+    @JvmStatic
     fun initPath(context: Context) {
         if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             val externalFilesDir = context.getExternalFilesDir("")
@@ -131,6 +132,7 @@ object FileUtil {
      *
      * @param dirStr : 文件目录
      */
+    @JvmStatic
     fun mkDirs(dirStr: String) {
         val dir = File(dirStr)
         if (!dir.exists()) {
@@ -167,6 +169,7 @@ object FileUtil {
      * @param uri
      * @return the file path or null
      */
+    @JvmStatic
     fun getImgRealFilePath(context: Context, uri: Uri?): String? {
         if (null == uri) {
             return null
@@ -199,6 +202,7 @@ object FileUtil {
      * @param uri
      * @return the file path or null
      */
+    @JvmStatic
     fun getVideoRealFilePath(context: Context, uri: Uri?): String? {
         if (null == uri) {
             return null
@@ -226,11 +230,13 @@ object FileUtil {
 
 
     /** Create a file Uri for saving an image or video  */
+    @JvmStatic
     fun getOutputMediaFileUri(type: Int): Uri {
         return Uri.fromFile(getOutputMediaFile(type))
     }
 
     /** Create a file Uri for saving an image or video  */
+    @JvmStatic
     fun getOutputMediaFileUri(type: Int, userId: String): Uri {
         return Uri.fromFile(getOutputMediaFile(type, userId))
     }
@@ -268,6 +274,7 @@ object FileUtil {
 
     /** Create a File for saving an image or video  */
     @SuppressLint("SimpleDateFormat")
+    @JvmStatic
     fun getOutputMediaFile(type: Int): File? {
         val imagesDir = File(FileUtil.IMAGES_PATH)
         if (!imagesDir.exists()) {
@@ -301,6 +308,7 @@ object FileUtil {
     /*
      * 压缩图片
      */
+    @JvmStatic
     fun computeSampleSize(options: BitmapFactory.Options, minSideLength: Int, maxNumOfPixels: Int): Int {
         val initialSize = computeInitialSampleSize(options, minSideLength, maxNumOfPixels)
 
@@ -346,6 +354,7 @@ object FileUtil {
      * @param bitmap
      * @return
      */
+    @JvmStatic
     fun bitmapToBase64(bitmap: Bitmap?): String? {
 
         var result: String? = null
@@ -383,6 +392,7 @@ object FileUtil {
      * @param base64Data
      * @return
      */
+    @JvmStatic
     fun base64ToBitmap(base64Data: String): Bitmap {
         val bytes = Base64.decode(base64Data, Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
@@ -397,6 +407,7 @@ object FileUtil {
      * @since JDK 1.6
      */
     @Throws(Exception::class)
+    @JvmStatic
     fun encodeBase64File(path: String): String {
         val file = File(path)
         val inputFile = FileInputStream(file)
@@ -415,6 +426,7 @@ object FileUtil {
      * @since JDK 1.6
      */
     @Throws(Exception::class)
+    @JvmStatic
     fun decoderBase64File(base64Code: String, savePath: String) {
         val buffer = Base64.decode(base64Code, Base64.DEFAULT)
         val out = FileOutputStream(savePath)
@@ -426,6 +438,7 @@ object FileUtil {
     /*
      * 旋转Bitmap 270"
      */
+    @JvmStatic
     fun getRotationOfBitmap(degree: Int, oriBmp: Bitmap?): Bitmap {
         val matrix = Matrix()
         matrix.reset()
@@ -436,6 +449,7 @@ object FileUtil {
     /*
      * 转换文件
      */
+    @JvmStatic
     fun FormatFileSize(fileS: Long): String {
         val df = DecimalFormat("#.00")
         var fileSizeString = ""
@@ -458,6 +472,7 @@ object FileUtil {
      * @param oldPath String 原文件路径 如：aa,不能有前面的/
      * @param newPath String 复制后路径 如：xx:/bb/cc
      */
+    @JvmStatic
     fun copyFilesFassets(context: Context, oldPath: String, newPath: String) {
         try {
             val fileNames = context.assets.list(oldPath)// 获取assets目录下的所有文件及目录名
@@ -493,6 +508,7 @@ object FileUtil {
      * @param bitmap
      * @return
      */
+    @JvmStatic
     fun saveBitmap(bitmap: Bitmap): String {
         val file = FileUtil.getOutputMediaFile(FileUtil.MEDIA_TYPE_IMAGE)
         var fOut: FileOutputStream? = null
@@ -514,6 +530,7 @@ object FileUtil {
      * @param bitmapPath 原始路径
      * @param degree 旋转度数
      */
+    @JvmStatic
     fun getBitmapFromPath(bitmapPath: String, degree: Int): Bitmap {
 
         var bmp: Bitmap? = null
@@ -534,6 +551,7 @@ object FileUtil {
     /**
      * 从文件中获取压缩的bitmap
      */
+    @JvmStatic
     fun getCompressBitmap(bitmapPath: String): Bitmap? {
         var result: Bitmap? = null
         val opts = BitmapFactory.Options()
@@ -550,6 +568,7 @@ object FileUtil {
         return result
     }
 
+    @JvmStatic
     fun getCompressBitmap(bitmap: Bitmap): Bitmap {
         //3.缩放法压缩
         val matrix = Matrix()
@@ -558,10 +577,10 @@ object FileUtil {
     }
 
     object FileSize {
-        val SIZETYPE_B = 1// 获取文件大小单位为B的double值
-        val SIZETYPE_KB = 2// 获取文件大小单位为KB的double值
-        val SIZETYPE_MB = 3// 获取文件大小单位为MB的double值
-        val SIZETYPE_GB = 4// 获取文件大小单位为GB的double值
+        const val SIZETYPE_B = 1// 获取文件大小单位为B的double值
+        const val SIZETYPE_KB = 2// 获取文件大小单位为KB的double值
+        const val SIZETYPE_MB = 3// 获取文件大小单位为MB的double值
+        const val SIZETYPE_GB = 4// 获取文件大小单位为GB的double值
 
         /**
          * 获取文件指定文件的指定单位的大小
@@ -570,6 +589,7 @@ object FileUtil {
          * @param sizeType 获取大小的类型1为B、2为KB、3为MB、4为GB
          * @return double值的大小
          */
+        @JvmStatic
         fun getFileOrFilesSize(filePath: String, sizeType: Int): Double {
             val file = File(filePath)
             var blockSize: Long = 0
@@ -593,6 +613,7 @@ object FileUtil {
          * @param filePath 文件路径
          * @return 计算好的带B、KB、MB、GB的字符串
          */
+        @JvmStatic
         fun getAutoFileOrFilesSize(filePath: String): String {
             val file = File(filePath)
             var blockSize: Long = 0
@@ -631,6 +652,7 @@ object FileUtil {
         //    return size;
         //}
 
+        @JvmStatic
         fun getFileSize(file: File): Long {
             var size: Long = 0
             if (file.exists()) {
@@ -670,6 +692,7 @@ object FileUtil {
          * @throws Exception
          */
         @Throws(Exception::class)
+        @JvmStatic
         fun getFileSizes(f: File): Long {
             var size: Long = 0
             val flist = f.listFiles()
@@ -689,6 +712,7 @@ object FileUtil {
          * @param fileS
          * @return
          */
+        @JvmStatic
         fun FormetFileSize(fileS: Long): String {
             val df = DecimalFormat("#.00")
             var fileSizeString = ""
@@ -715,6 +739,7 @@ object FileUtil {
          * @param sizeType
          * @return
          */
+        @JvmStatic
         fun FormetFileSize(fileS: Long, sizeType: Int): Double {
             val df = DecimalFormat("#.00")
             var fileSizeLong = 0.0
@@ -734,6 +759,7 @@ object FileUtil {
     /**
      * 创建图片文件
      */
+    @JvmStatic
     fun createImageFile(): File {
         // Create an image file name
         val timeStamp = System.currentTimeMillis().toString() + ""
@@ -747,6 +773,7 @@ object FileUtil {
     }
 
     //删除文件夹所有文件
+    @JvmStatic
     fun deleteFile(path: String): Boolean {
         if (TextUtils.isEmpty(path)) {
             return true
@@ -772,6 +799,7 @@ object FileUtil {
         return true
     }
 
+    @JvmStatic
     fun writeFile(file: File, bytes: ByteArray) {
         // 创建FileOutputStream对象
         var outputStream: FileOutputStream? = null
@@ -816,6 +844,7 @@ object FileUtil {
         }
     }
 
+    @JvmStatic
     fun getPathFromUri(context: Context, uri: Uri): String? {
         return if (Build.VERSION.SDK_INT >= 24) {
             getPathFromUri24(context, uri)
@@ -824,6 +853,7 @@ object FileUtil {
         }
     }
 
+    @JvmStatic
     fun getPathFromUri24(context: Context, uri: Uri): String? {
         val rootDataDir = context.filesDir
         val fileName = getFileName(uri)
@@ -835,6 +865,7 @@ object FileUtil {
         return null
     }
 
+    @JvmStatic
     fun copyFile(context: Context, srcUri: Uri, dstFile: File) {
         try {
             val inputStream = context.contentResolver.openInputStream(srcUri) ?: return
@@ -848,6 +879,7 @@ object FileUtil {
 
     }
 
+    @JvmStatic
     @Throws(Exception::class, IOException::class)
     fun copyStream(input: InputStream, output: OutputStream): Int {
         val BUFFER_SIZE = 1024 * 2
@@ -878,7 +910,7 @@ object FileUtil {
         return count
     }
 
-
+    @JvmStatic
     fun getFileName(uri: Uri?): String? {
         if (uri == null) return null
         var fileName: String? = null
@@ -903,6 +935,7 @@ object FileUtil {
      * @author paulburke
      */
     @SuppressLint("NewApi")
+    @JvmStatic
     fun getPath(context: Context, uri: Uri): String? {
         val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
@@ -973,6 +1006,7 @@ object FileUtil {
      * @return Whether the Uri authority is ExternalStorageProvider.
      * @author paulburke
      */
+    @JvmStatic
     fun isExternalStorageDocument(uri: Uri): Boolean {
         return "com.android.externalstorage.documents" == uri.authority
     }
@@ -982,6 +1016,7 @@ object FileUtil {
      * @return Whether the Uri authority is DownloadsProvider.
      * @author paulburke
      */
+    @JvmStatic
     fun isDownloadsDocument(uri: Uri): Boolean {
         return "com.android.providers.downloads.documents" == uri.authority
     }
@@ -991,6 +1026,7 @@ object FileUtil {
      * @return Whether the Uri authority is MediaProvider.
      * @author paulburke
      */
+    @JvmStatic
     fun isMediaDocument(uri: Uri): Boolean {
         return "com.android.providers.media.documents" == uri.authority
     }
@@ -999,6 +1035,7 @@ object FileUtil {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
+    @JvmStatic
     fun isGooglePhotosUri(uri: Uri): Boolean {
         return "com.google.android.apps.photos.content" == uri.authority
     }
@@ -1014,6 +1051,7 @@ object FileUtil {
      * @return The value of the _data column, which is typically a file path.
      * @author paulburke
      */
+    @JvmStatic
     fun getDataColumn(context: Context, uri: Uri?, selection: String?,
                       selectionArgs: Array<String>?): String? {
 
@@ -1040,6 +1078,7 @@ object FileUtil {
      * @param filename
      * @return
      */
+    @JvmStatic
     fun getFileSuffix(filename: String?): String? {
         if (filename != null && filename.length > 0) {
             val dot = filename.lastIndexOf('.')
@@ -1055,6 +1094,7 @@ object FileUtil {
      * @param suffix
      * @return
      */
+    @JvmStatic
     fun isPhoto(suffix: String): Boolean {
         if (TextUtils.isEmpty(suffix)) {
             return false
@@ -1071,6 +1111,7 @@ object FileUtil {
      * @param suffix
      * @return
      */
+    @JvmStatic
     fun isPermitFileType(suffix: String): Boolean {
         if (TextUtils.isEmpty(suffix)) {
             return false

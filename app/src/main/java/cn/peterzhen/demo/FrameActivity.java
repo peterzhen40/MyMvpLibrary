@@ -26,7 +26,7 @@ public class FrameActivity extends XActivity {
     @Override
     public void initData(Bundle savedInstanceState) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container,new DemoFragment());
+        fragmentTransaction.add(R.id.container,new KotlinFragment());
         fragmentTransaction.commit();
     }
 

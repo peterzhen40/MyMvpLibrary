@@ -182,4 +182,38 @@ object DateTimePickerUtil {
         timePickerView.show(target)
     }
 
+    /**
+     * 选择月份
+     */
+    @JvmStatic
+    fun monthPicker(activity: Activity, target: TextView, pattern: String = "", selectDate: Calendar = Calendar.getInstance(),
+                   startDate: Calendar? = null, endDate: Calendar? = null, isCycle: Boolean = true) {
+        var startDate = startDate
+        var endDate = endDate
+        if (startDate == null) {
+            startDate = Calendar.getInstance()
+            startDate!!.set(Calendar.YEAR, 1900)
+        }
+        if (endDate == null) {
+            endDate = Calendar.getInstance()
+            endDate!!.set(Calendar.YEAR, 2100)
+        }
+        val timePickerView = TimePickerBuilder(activity, OnTimeSelectListener { date, v ->
+            val dateStr: String
+            if (TextUtils.isEmpty(pattern)) {
+                dateStr = DateUtil.getFormatDate(date)
+            } else {
+                dateStr = DateUtil.getFormatDate(date, pattern)
+            }
+            target.text = dateStr
+        })
+                .setType(booleanArrayOf(true, true, false, false, false, false))
+                .setRangDate(startDate, endDate)
+                .isCyclic(isCycle)
+                .build()
+        //默认
+        timePickerView.setDate(selectDate)
+        timePickerView.show(target)
+    }
+
 }

@@ -14,19 +14,20 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 
 abstract class XLazyFragment : LazyFragment(), IView {
 
-    private lateinit var vDelegate: VDelegate
+    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
     //private var p: P? = null
 
-    private lateinit var rxPermissions: RxPermissions
+    val rxPermissions: RxPermissions by lazy {
+        val rxPermissions = RxPermissions(context)
+        rxPermissions.setLogging(CommonConfig.DEV)
+        rxPermissions
+    }
     private var unbinder: Unbinder? = null
 
 
-    override val optionsMenuId: Int
-        get() = 0
+    override val optionsMenuId: Int = 0
 
     override fun onCreateViewLazy(savedInstanceState: Bundle?) {
-        vDelegate = VDelegateBase(context)
-        rxPermissions = RxPermissions(context)
         super.onCreateViewLazy(savedInstanceState)
         if (savedInstanceState != null) {
             val isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN)
@@ -103,10 +104,10 @@ abstract class XLazyFragment : LazyFragment(), IView {
     }
 
 
-    protected fun getRxPermissions(): RxPermissions {
-        rxPermissions.setLogging(CommonConfig.DEV)
-        return rxPermissions
-    }
+    //protected fun getRxPermissions(): RxPermissions {
+    //    rxPermissions.setLogging(CommonConfig.DEV)
+    //    return rxPermissions
+    //}
 
 
     override fun useEventBus(): Boolean {

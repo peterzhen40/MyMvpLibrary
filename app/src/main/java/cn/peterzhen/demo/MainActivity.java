@@ -1,5 +1,6 @@
 package cn.peterzhen.demo;
 
+import android.Manifest;
 import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
@@ -65,6 +66,11 @@ public class MainActivity extends XActivity {
 
         Application application = context.getApplication();
         getvDelegate().show("test");
+        //getRxPermissions()
+        getRxPermissions().request(Manifest.permission.CAMERA)
+                .subscribe(aBoolean -> {
+
+                });
 
     }
 

@@ -13,6 +13,7 @@ import cn.cbsd.mvplibrary.kit.KnifeKit
 import com.fengchen.uistatus.UiStatusController
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.trello.rxlifecycle2.components.support.RxFragment
+import kotlin.properties.Delegates
 
 /**
  * Created by wanglei on 2016/12/29.
@@ -20,11 +21,16 @@ import com.trello.rxlifecycle2.components.support.RxFragment
 
 abstract class XFragment : RxFragment(), IView {
 
-    private lateinit var vDelegate: VDelegate
     protected lateinit var context: Activity
-    private var rootView: View? = null
-    protected lateinit var myLayoutInflater: LayoutInflater
-    private lateinit var rxPermissions: RxPermissions
+    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
+    private var rootView: View by Delegates.notNull()
+    lateinit var myLayoutInflater: LayoutInflater
+
+    val rxPermissions: RxPermissions by lazy {
+        val rxPermissions = RxPermissions(context)
+        rxPermissions.setLogging(CommonConfig.DEV)
+        rxPermissions
+    }
     private var unbinder: Unbinder? = null
     //private var p: P? = null
 
@@ -60,17 +66,17 @@ abstract class XFragment : RxFragment(), IView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myLayoutInflater = inflater
-        if (rootView == null && layoutId > 0) {
+        if (layoutId > 0) {
             rootView = inflater.inflate(layoutId, null)
             bindUI(rootView)
         } else {
-            val viewGroup = rootView!!.parent as ViewGroup
+            val viewGroup = rootView.parent as ViewGroup
             viewGroup.removeView(rootView)
         }
 
         if (useDefaultUiState()) {
             defaultUiController = UiStatusController.get()
-            rootView = defaultUiController.bindFragment(rootView!!)
+            rootView = defaultUiController.bindFragment(rootView)
         }
         return rootView
     }
@@ -104,8 +110,6 @@ abstract class XFragment : RxFragment(), IView {
         super.onAttach(context)
         if (context is Activity) {
             this.context = context
-            vDelegate = VDelegateBase(context)
-            rxPermissions = RxPermissions(context)
         }
     }
 
@@ -134,10 +138,10 @@ abstract class XFragment : RxFragment(), IView {
 
     }
 
-    protected fun getRxPermissions(): RxPermissions? {
-        rxPermissions.setLogging(CommonConfig.DEV)
-        return rxPermissions
-    }
+    //protected fun getRxPermissions(): RxPermissions? {
+    //    rxPermissions.setLogging(CommonConfig.DEV)
+    //    return rxPermissions
+    //}
 
     override fun bindEvent() {
 

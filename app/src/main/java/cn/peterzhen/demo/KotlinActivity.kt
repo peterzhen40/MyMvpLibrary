@@ -58,6 +58,8 @@ class KotlinActivity :XActivity(){
                 .addSheetItem("",IosSheetDialog.SheetItemColor.Blue, OnSheetItemClickListener {  })
         IosDialog(context).builder()
                 .setPositiveButton("", View.OnClickListener {  })
+
+
     }
 
     suspend fun login(username:String, password:String):ReturnModel<LoginResult>{

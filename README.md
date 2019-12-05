@@ -1,7 +1,7 @@
 # MyMvpLibrary
 
 ### 说明：
-此为mvp库
+
 
 ### How to use
 #### Add the dependency
@@ -9,6 +9,6 @@
 [![Download](https://api.bintray.com/packages/peterzhen40/maven/MyMvpLibrary-androidx/images/download.svg)](https://bintray.com/peterzhen40/maven/MyMvpLibrary-androidx/_latestVersion)
 ```
 dependencies {
-     implementation 'cn.cbsd:MyMvpLibrary-androidx:3.0Beta-1'
+     implementation 'cn.cbsd:MyMvpLibrary-androidx:3.0Beta'
 }
 ```

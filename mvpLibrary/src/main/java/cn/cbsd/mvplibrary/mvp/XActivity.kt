@@ -2,7 +2,6 @@ package cn.cbsd.mvplibrary.mvp
 
 import android.app.Activity
 import android.graphics.Color
-import android.net.IpPrefix
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -24,10 +23,14 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 abstract class XActivity : RxAppCompatActivity(), IView{
 
     protected lateinit var context: Activity
-    private lateinit var vDelegate: VDelegate
+    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
     //private var p: P? = null
 
-    private lateinit var rxPermissions: RxPermissions
+    val rxPermissions: RxPermissions by lazy {
+        val rxPermissions = RxPermissions(context)
+        rxPermissions.setLogging(CommonConfig.DEV)
+        rxPermissions
+    }
 
     private var unbinder: Unbinder? = null
 
@@ -41,8 +44,8 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         super.onCreate(savedInstanceState)
         ActivityCollector.addActivity(this)
         context = this
-        vDelegate = VDelegateBase(context)
-        rxPermissions = RxPermissions(context)
+        //vDelegate = VDelegateBase(context)
+        //rxPermissions = RxPermissions(context)
 
         if (layoutId > 0) {
             setContentView(layoutId)
@@ -131,10 +134,9 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         return super.onCreateOptionsMenu(menu)
     }
 
-    protected fun getRxPermissions(): RxPermissions {
-        rxPermissions.setLogging(CommonConfig.DEV)
-        return rxPermissions
-    }
+    //fun getRxPermissions(): RxPermissions {
+    //    return rxPermissions
+    //}
 
     override fun bindEvent() {
 

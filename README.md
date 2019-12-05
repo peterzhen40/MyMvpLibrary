@@ -22,6 +22,7 @@ dependencies {
 ```
 
 AndroidX+kotlin版本
+
 [![Download](https://api.bintray.com/packages/peterzhen40/maven/MyMvpLibrary-androidx/images/download.svg)](https://bintray.com/peterzhen40/maven/MyMvpLibrary-androidx/_latestVersion)
 ```
 dependencies {

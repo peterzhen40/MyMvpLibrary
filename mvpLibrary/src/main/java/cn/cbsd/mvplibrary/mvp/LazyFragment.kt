@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.fragment.app.Fragment
 import com.fengchen.uistatus.UiStatusController
 import com.trello.rxlifecycle2.components.support.RxFragment
 
@@ -197,15 +196,16 @@ open class LazyFragment : RxFragment() {
         super.onDetach()
         //context = null
 
-        try {
-            val childFragmentManager = Fragment::class.java.getDeclaredField("mChildFragmentManager")
-            childFragmentManager.isAccessible = true
-            childFragmentManager.set(this, null)
-        } catch (e: NoSuchFieldException) {
-            throw RuntimeException(e)
-        } catch (e: IllegalAccessException) {
-            throw RuntimeException(e)
-        }
+        //androidx不需要这段代码，会引起崩溃
+        //try {
+        //    val childFragmentManager = Fragment::class.java.getDeclaredField("mChildFragmentManager")
+        //    childFragmentManager.isAccessible = true
+        //    childFragmentManager.set(this, null)
+        //} catch (e: NoSuchFieldException) {
+        //    throw RuntimeException(e)
+        //} catch (e: IllegalAccessException) {
+        //    throw RuntimeException(e)
+        //}
 
     }
 

@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class KotlinActivity :XActivity(){
 
-    override val layoutId: Int = R.layout.view_all_list
+    override val layoutId: Int = R.layout.view_all_list_page_state
 
     override fun initData(savedInstanceState: Bundle?) {
         //getvDelegate()?.showError(msg = "test")

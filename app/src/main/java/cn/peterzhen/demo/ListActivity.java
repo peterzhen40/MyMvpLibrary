@@ -49,6 +49,7 @@ public class ListActivity extends XActivity {
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        mToolbarTitle.setText("列表");
 
         mUiController = UiStatusController.get().bind(mRecyclerView);
         mUiController.changeUiStatus(UiStatus.CONTENT);

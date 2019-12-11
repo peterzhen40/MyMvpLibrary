@@ -7,6 +7,8 @@ import android.provider.Settings;
 import com.fengchen.uistatus.UiStatusManager;
 import com.fengchen.uistatus.annotation.UiStatus;
 
+import timber.log.Timber;
+
 /**
  * 当前类注释:
  *
@@ -42,5 +44,7 @@ public class MyApp extends Application {
 //                        return NetworkUtils.isConnected();
 //                    }
 //                });
+
+        Timber.plant(new Timber.DebugTree());
     }
 }

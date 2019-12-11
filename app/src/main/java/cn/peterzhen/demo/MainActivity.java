@@ -1,7 +1,5 @@
 package cn.peterzhen.demo;
 
-import android.Manifest;
-import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +9,11 @@ import android.widget.TextView;
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
+import cn.cbsd.mvplibrary.kit.EncodeUtils;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.router.Router;
-import cn.cbsd.mvplibrary.widget.IosSheetDialog;
 import es.dmoral.toasty.MyToast;
+import timber.log.Timber;
 
 public class MainActivity extends XActivity {
 
@@ -47,7 +46,7 @@ public class MainActivity extends XActivity {
 
         mButton2.setOnClickListener(view -> {
             Router.newIntent(context)
-                    .to(KotlinActivity.class)
+                    .to(ListActivity.class)
                     .launch();
             //new IosDialog(context).builder()
             //        .setTitle("提示")
@@ -58,19 +57,8 @@ public class MainActivity extends XActivity {
 //            new AlertDialog.Builder()
         });
 
-        new IosSheetDialog(context)
-                .builder()
-                .addSheetItem("", IosSheetDialog.SheetItemColor.Blue,which -> {
-                    getvDelegate().show("函数类型test");
-                });
-
-        Application application = context.getApplication();
-        getvDelegate().show("test");
-        //getRxPermissions()
-        getRxPermissions().request(Manifest.permission.CAMERA)
-                .subscribe(aBoolean -> {
-
-                });
+        byte[] base64Decode = EncodeUtils.base64Decode("hello world");
+        Timber.e(base64Decode.toString());
 
     }
 

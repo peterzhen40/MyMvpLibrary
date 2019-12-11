@@ -9,6 +9,6 @@
 [![Download](https://api.bintray.com/packages/peterzhen40/maven/MyMvpLibrary-kotlin/images/download.svg)](https://bintray.com/peterzhen40/maven/MyMvpLibrary-kotlin/_latestVersion)
 ```
 dependencies {
-     implementation 'cn.cbsd:MyMvpLibrary-kotlin:2.0.6'
+     implementation 'cn.cbsd:MyMvpLibrary-kotlin:2.0.7'
 }
 ```

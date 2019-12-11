@@ -20,7 +20,7 @@ import java.net.URLEncoder
 object EncodeUtils {
 
     init {
-        throw UnsupportedOperationException("u can't instantiate me...")
+        //throw UnsupportedOperationException("u can't instantiate me...")
     }
 
     /**

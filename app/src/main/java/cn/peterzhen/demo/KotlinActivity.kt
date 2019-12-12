@@ -1,12 +1,10 @@
 package cn.peterzhen.demo
 
 import android.os.Bundle
-import android.view.View
 import cn.cbsd.mvplibrary.base.ReturnModel
+import cn.cbsd.mvplibrary.ext.md5
+import cn.cbsd.mvplibrary.kit.MD5Util
 import cn.cbsd.mvplibrary.mvp.XActivity
-import cn.cbsd.mvplibrary.widget.IosDialog
-import cn.cbsd.mvplibrary.widget.IosSheetDialog
-import cn.cbsd.mvplibrary.widget.OnSheetItemClickListener
 import cn.peterzhen.demo.net.LoginModel
 import cn.peterzhen.demo.net.LoginResult
 import cn.peterzhen.demo.net.MyService
@@ -54,11 +52,9 @@ class KotlinActivity :XActivity(){
         //    }
         //}
 
-        IosSheetDialog(context).builder()
-                .addSheetItem("",IosSheetDialog.SheetItemColor.Blue, OnSheetItemClickListener {  })
-        IosDialog(context).builder()
-                .setPositiveButton("", View.OnClickListener {  })
-
+        val md5Str1 = MD5Util.parseStrToMd5U32("88888")
+        val md5Str2 = "88888".md5().toUpperCase()
+        getvDelegate().showConfirm("1：$md5Str1\n2：$md5Str2")
 
     }
 

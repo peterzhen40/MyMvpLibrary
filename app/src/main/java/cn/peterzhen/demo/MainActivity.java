@@ -9,11 +9,9 @@ import android.widget.TextView;
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
-import cn.cbsd.mvplibrary.kit.EncodeUtils;
 import cn.cbsd.mvplibrary.mvp.XActivity;
 import cn.cbsd.mvplibrary.router.Router;
 import es.dmoral.toasty.MyToast;
-import timber.log.Timber;
 
 public class MainActivity extends XActivity {
 
@@ -46,19 +44,10 @@ public class MainActivity extends XActivity {
 
         mButton2.setOnClickListener(view -> {
             Router.newIntent(context)
-                    .to(ListActivity.class)
+                    .to(KotlinActivity.class)
                     .launch();
-            //new IosDialog(context).builder()
-            //        .setTitle("提示")
-            //        .setMessage("获取数据异常")
-            //        .setPositiveButton("我知道了",null)
-            //        .setNegativeButton("取消",null)
-            //        .show();
-//            new AlertDialog.Builder()
         });
 
-        byte[] base64Decode = EncodeUtils.base64Decode("hello world");
-        Timber.e(base64Decode.toString());
 
     }
 

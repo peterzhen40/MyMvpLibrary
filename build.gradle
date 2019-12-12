@@ -36,6 +36,6 @@ ext {
     targetSdkVersion = 28
     compileSdkVersion = 28
     buildToolsVersion = "28.0.3"
-    versionCode = 32
-    versionName = "3.0.2"
+    versionCode = 33
+    versionName = "3.0.3"
 }

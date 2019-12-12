@@ -2,7 +2,6 @@ package cn.cbsd.mvplibrary.kit
 
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import kotlin.experimental.and
 
 /**
  * 当前类注释:
@@ -26,11 +25,11 @@ object MD5Util {
             val bytes = md5.digest(str.toByteArray())
             val stringBuffer = StringBuffer()
             for (b in bytes) {
-                val bt = b and 0xff.toByte()
+                val bt = b.toInt() and 0xff
                 if (bt < 16) {
                     stringBuffer.append(0)
                 }
-                stringBuffer.append(Integer.toHexString(bt.toInt()))
+                stringBuffer.append(Integer.toHexString(bt))
             }
             reStr = stringBuffer.toString()
         } catch (e: NoSuchAlgorithmException) {

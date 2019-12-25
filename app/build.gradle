@@ -43,4 +43,6 @@ dependencies {
     //implementation "org.jetbrains.anko:anko-common:$anko_version"
     //状态页
     implementation 'com.github.Kennyc1012:MultiStateView:2.1.1'
+
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42"
 }

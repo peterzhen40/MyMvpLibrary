@@ -70,7 +70,7 @@ class Router private constructor() {
         return this
     }
 
-    fun putString(key: String, value: String): Router {
+    fun putString(key: String, value: String?): Router {
         data.putString(key, value)
         return this
     }

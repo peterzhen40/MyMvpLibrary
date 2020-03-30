@@ -11,16 +11,7 @@ import android.net.NetworkInfo
 import android.net.Uri
 import android.telephony.TelephonyManager
 import android.text.TextUtils
-import java.io.BufferedReader
-import java.io.Closeable
-import java.io.FileInputStream
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.FileWriter
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.io.OutputStream
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -426,26 +417,32 @@ class Kits {
          */
         @JvmStatic
         @JvmOverloads
-        fun writeFile(file: java.io.File?, stream: InputStream, append: Boolean = false): Boolean {
-            var o: OutputStream? = null
-            try {
-                makeDirs(file?.absolutePath)
-                o = FileOutputStream(file, append)
+        fun writeFile(file: File?, stream: InputStream?, append: Boolean = false): Boolean {
+            if (!makeDirs(file?.absolutePath) || stream == null) return false
+            var os: OutputStream? = null
+            return try {
+                os = BufferedOutputStream(FileOutputStream(file, append))
                 val data = ByteArray(1024)
-                var length = -1
-                while (stream.read(data) != -1) {
-                    length = stream.read(data)
-                    o.write(data, 0, length)
+                var len: Int
+                while (stream.read(data, 0, 1024).also { len = it } != -1) {
+                    os.write(data, 0, len)
                 }
-                o.flush()
-                return true
-            } catch (e: FileNotFoundException) {
-                throw RuntimeException("FileNotFoundException occurred. ", e)
+                os.flush()
+                true
             } catch (e: IOException) {
-                throw RuntimeException("IOException occurred. ", e)
+                e.printStackTrace()
+                false
             } finally {
-                IO.close(o)
-                IO.close(stream)
+                try {
+                    stream.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                try {
+                    os?.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
         }
 

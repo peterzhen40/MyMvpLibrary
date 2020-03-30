@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.6.0'
         //开源bintray插件
         classpath 'com.novoda:bintray-release:0.9.1'
         //kotlin

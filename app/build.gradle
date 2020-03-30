@@ -15,6 +15,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -45,4 +46,8 @@ dependencies {
     implementation 'com.github.Kennyc1012:MultiStateView:2.1.1'
 
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

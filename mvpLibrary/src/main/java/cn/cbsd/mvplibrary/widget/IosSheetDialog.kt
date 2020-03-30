@@ -95,6 +95,19 @@ class IosSheetDialog(private val context: Context) {
         return this
     }
 
+    fun addListItems(list: List<String>, listener: OnSheetItemClickListener): IosSheetDialog {
+        if (list.isNullOrEmpty()) return this
+
+        for (str in list) {
+            if (sheetItemList == null) {
+                sheetItemList = ArrayList()
+            }
+            sheetItemList!!.add(SheetItem(str, SheetItemColor.Blue, listener))
+        }
+
+        return this
+    }
+
     /** 设置条目布局  */
     private fun setSheetItems() {
         if (sheetItemList == null || sheetItemList!!.size <= 0) {

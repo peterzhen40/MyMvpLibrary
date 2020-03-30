@@ -5,73 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ios_bg"
-    android:paddingTop="20dp"
-    android:orientation="vertical" >
-
-    <TextView
-        android:visibility="visible"
-        android:id="@+id/txt_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:paddingBottom="8dp"
-        tools:text="title"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txt_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        tools:text="contentadfjldfjdlfjdlgjslfkjslfjslfj"
-        android:textColor="@color/main_text"
-        android:textSize="16sp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/alertdialog_line" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="20dp">
 
-        <Button
-            android:id="@+id/btn_neg"
-            android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_weight="1"
-            android:background="@drawable/iosdialog_left_selector"
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="no"
-            android:textColor="@color/actionsheet_blue"
-            android:textSize="16sp" />
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:text="title" />
+
+        <TextView
+            android:id="@+id/txt_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/main_text"
+            android:textSize="16sp"
+            tools:text="contentadfjldfjdlfjdlgjslfkjslfjslfj" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/img_line"
-            android:layout_width="0.5dp"
-            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
             android:background="@color/alertdialog_line" />
 
-        <Button
-            android:id="@+id/btn_pos"
-            android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_weight="1"
-            android:background="@drawable/iosdialog_right_selector"
-            android:gravity="center"
-            tools:text="yes"
-            android:textColor="@color/actionsheet_blue"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_neg"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:layout_weight="1"
+                android:background="@drawable/iosdialog_left_selector"
+                android:gravity="center"
+                android:textColor="@color/actionsheet_blue"
+                android:textSize="16sp"
+                tools:text="no" />
+
+            <ImageView
+                android:id="@+id/img_line"
+                android:layout_width="0.5dp"
+                android:layout_height="43dp"
+                android:background="@color/alertdialog_line" />
+
+            <Button
+                android:id="@+id/btn_pos"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:layout_weight="1"
+                android:background="@drawable/iosdialog_right_selector"
+                android:gravity="center"
+                android:textColor="@color/actionsheet_blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="yes" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

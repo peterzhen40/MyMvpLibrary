@@ -2,11 +2,10 @@ package cn.cbsd.mvplibrary.widget
 
 import android.app.Dialog
 import android.content.Context
-import android.view.Display
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.cbsd.mvplibrary.R
 
 /**
@@ -27,6 +26,10 @@ class IosDialog(private val context: Context) {
     private var showMsg = false
     private var showPosBtn = false
     private var showNegBtn = false
+    private var showList = false
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var llButton:LinearLayout
 
     init {
         val windowManager = context
@@ -51,6 +54,10 @@ class IosDialog(private val context: Context) {
         btn_pos!!.visibility = View.GONE
         img_line = view.findViewById<View>(R.id.img_line) as ImageView
         img_line!!.visibility = View.GONE
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.visibility = View.GONE
+        llButton = view.findViewById(R.id.ll_button)
 
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.AlertDialogStyle)
@@ -118,6 +125,20 @@ class IosDialog(private val context: Context) {
         return this
     }
 
+    fun setItems(list: List<String>, selectedIndex: Int = -1, listener: OnSheetItemClickListener) : IosDialog{
+        showList = true
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val adapter = ContentAdapter(list)
+        recyclerView.adapter = adapter
+        adapter.selectedIndex = selectedIndex
+        adapter.listener = OnSheetItemClickListener {
+            listener.onClick(it)
+            dialog?.dismiss()
+        }
+        return this
+    }
+
     private fun setLayout() {
         if (!showTitle && !showMsg) {
             txt_title!!.text = "提示"
@@ -156,10 +177,57 @@ class IosDialog(private val context: Context) {
             btn_neg!!.visibility = View.VISIBLE
             btn_neg!!.setBackgroundResource(R.drawable.iosdialog_single_selector)
         }
+
+        if (showList) {
+            //txt_msg?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            llButton.visibility = View.GONE
+        }
     }
 
     fun show() {
         setLayout()
         dialog!!.show()
+    }
+
+    class ContentAdapter(val dataList:List<String>) : RecyclerView.Adapter<ContentAdapter.ViewHolder>() {
+
+        var selectedIndex:Int = -1
+        var listener:OnSheetItemClickListener? = null
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val root = LayoutInflater.from(parent.context).inflate(R.layout.item_ios_checkbox, parent, false)
+            return ViewHolder(root)
+        }
+
+        override fun getItemCount(): Int {
+            return if (dataList.isNullOrEmpty()) 0 else dataList.size
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val item = dataList[position]
+            holder.checkBox.isChecked = position == selectedIndex
+            holder.text.text = item
+
+            holder.text.setOnClickListener{
+                listener?.onClick(position)
+                selectedIndex = position
+                notifyDataSetChanged()
+            }
+
+            holder.checkBox.setOnClickListener{
+                listener?.onClick(position)
+                selectedIndex = position
+                notifyDataSetChanged()
+            }
+        }
+
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            var checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
+            var text:TextView = itemView.findViewById(R.id.tv_select)
+
+        }
+
     }
 }

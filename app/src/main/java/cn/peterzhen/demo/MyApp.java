@@ -1,12 +1,12 @@
 package cn.peterzhen.demo;
 
-import android.app.Application;
 import android.content.Intent;
 import android.provider.Settings;
 
 import com.fengchen.uistatus.UiStatusManager;
 import com.fengchen.uistatus.annotation.UiStatus;
 
+import androidx.multidex.MultiDexApplication;
 import timber.log.Timber;
 
 /**
@@ -15,7 +15,7 @@ import timber.log.Timber;
  * @author zhenyanjun
  * @date 2019/4/3 09:59
  */
-public class MyApp extends Application {
+public class MyApp extends MultiDexApplication {
 
     @Override
     public void onCreate() {

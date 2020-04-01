@@ -15,7 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import cn.cbsd.mvplibrary.mvp.XActivity;
-import cn.cbsd.mvplibrary.widget.IosDialog;
+import cn.cbsd.mvplibrary.widget.IosSheetDialog;
 import es.dmoral.toasty.MyToast;
 
 public class MainActivity extends XActivity {
@@ -62,13 +62,9 @@ public class MainActivity extends XActivity {
         for (int i = 0; i < 20; i++) {
             list.add("item"+(i + 1));
         }
-        //new IosSheetDialog(context).builder()
-        //        .addListItems(list,which -> {
-        //            getvDelegate().showInfo(String.format("点击的是%d",which));
-        //        })
-        //        .show();
-        new IosDialog(context).builder()
-                .setItems(list,0,which -> {
+        new IosSheetDialog(context).builder()
+                .setTitle("test")
+                .addListItems(list ,which -> {
                     getvDelegate().showInfo(String.format("点击的是%d",which));
                 })
                 .show();

@@ -126,8 +126,8 @@ class IosSheetDialog(private val context: Context) {
         }
 
         // 循环添加条目
-        for (i in 1..size) {
-            val sheetItem = sheetItemList!![i - 1]
+        for (i in sheetItemList!!.indices) {
+            val sheetItem = sheetItemList!![i]
             val strItem = sheetItem.name
             val color = sheetItem.color
 
@@ -145,15 +145,15 @@ class IosSheetDialog(private val context: Context) {
                 }
             } else {
                 if (showTitle) {
-                    if (i >= 1 && i < size) {
+                    if (i >= 0 && i < size-1) {
                         textView.setBackgroundResource(R.drawable.iossheet_middle_selector)
                     } else {
                         textView.setBackgroundResource(R.drawable.iossheet_bottom_selector)
                     }
                 } else {
-                    if (i == 1) {
+                    if (i == 0) {
                         textView.setBackgroundResource(R.drawable.iossheet_top_selector)
-                    } else if (i < size) {
+                    } else if (i < size-1) {
                         textView.setBackgroundResource(R.drawable.iossheet_middle_selector)
                     } else {
                         textView.setBackgroundResource(R.drawable.iossheet_bottom_selector)

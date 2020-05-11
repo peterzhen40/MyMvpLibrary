@@ -39,7 +39,7 @@ data class VDelegateBase constructor(private val context: Activity) : VDelegate 
                 .show()
     }
 
-    private var mLoadingDialog: PromptDialog? = null
+    open var mLoadingDialog: PromptDialog? = null
 
 
     override fun resume() {

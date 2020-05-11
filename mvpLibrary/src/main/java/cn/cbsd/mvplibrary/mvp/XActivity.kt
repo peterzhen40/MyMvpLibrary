@@ -16,15 +16,18 @@ import cn.cbsd.mvplibrary.kit.KnifeKit
 import com.fengchen.uistatus.UiStatusController
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 
 /**
  * Created by wanglei on 2016/12/29.
  */
 
-abstract class XActivity : RxAppCompatActivity(), IView{
+abstract class XActivity : RxAppCompatActivity(), IView, CoroutineScope by MainScope(){
 
     protected lateinit var context: Activity
-    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
+    private val vDelegate: VDelegateBase by lazy { VDelegateBase(context) }
     //private var p: P? = null
 
     val rxPermissions: RxPermissions by lazy {
@@ -85,7 +88,7 @@ abstract class XActivity : RxAppCompatActivity(), IView{
         unbinder = KnifeKit.bind(this)
     }
 
-    fun getvDelegate(): VDelegate {
+    fun getvDelegate(): VDelegateBase {
         return vDelegate
     }
 
@@ -174,5 +177,10 @@ abstract class XActivity : RxAppCompatActivity(), IView{
 
     override fun newP(): Any? {
         return null
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        vDelegate.mLoadingDialog?.onBackPressed()
     }
 }

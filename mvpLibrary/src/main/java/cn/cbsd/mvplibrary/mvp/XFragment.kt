@@ -13,16 +13,18 @@ import cn.cbsd.mvplibrary.kit.KnifeKit
 import com.fengchen.uistatus.UiStatusController
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.trello.rxlifecycle2.components.support.RxFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 import kotlin.properties.Delegates
 
 /**
  * Created by wanglei on 2016/12/29.
  */
 
-abstract class XFragment : RxFragment(), IView {
+abstract class XFragment : RxFragment(), IView , CoroutineScope by MainScope() {
 
     protected lateinit var context: Activity
-    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
+    private val vDelegate: VDelegateBase by lazy { VDelegateBase(context) }
     private var rootView: View by Delegates.notNull()
     lateinit var myLayoutInflater: LayoutInflater
 
@@ -102,7 +104,7 @@ abstract class XFragment : RxFragment(), IView {
         unbinder = KnifeKit.bind(this, rootView!!)
     }
 
-    fun getvDelegate(): VDelegate {
+    fun getvDelegate(): VDelegateBase {
         return vDelegate
     }
 

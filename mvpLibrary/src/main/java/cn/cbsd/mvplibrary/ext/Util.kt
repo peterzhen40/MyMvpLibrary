@@ -12,3 +12,5 @@ import com.google.gson.reflect.TypeToken
  * 获取gson解析的泛型
  */
 inline fun <reified T> genericType() = object: TypeToken<T>() {}.type
+
+inline fun <reified T> genericTypeToken() = object: TypeToken<T>() {}

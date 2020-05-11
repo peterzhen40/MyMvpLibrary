@@ -7,14 +7,16 @@ import cn.cbsd.mvplibrary.CommonConfig
 import cn.cbsd.mvplibrary.event.BusProvider
 import cn.cbsd.mvplibrary.kit.KnifeKit
 import com.tbruyelle.rxpermissions2.RxPermissions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 
 /**
  * Created by wanglei on 2017/1/26.
  */
 
-abstract class XLazyFragment : LazyFragment(), IView {
+abstract class XLazyFragment : LazyFragment(), IView , CoroutineScope by MainScope() {
 
-    private val vDelegate: VDelegate by lazy { VDelegateBase(context) }
+    private val vDelegate: VDelegateBase by lazy { VDelegateBase(context) }
     //private var p: P? = null
 
     val rxPermissions: RxPermissions by lazy {
@@ -71,7 +73,7 @@ abstract class XLazyFragment : LazyFragment(), IView {
     }
 
 
-    fun getvDelegate(): VDelegate {
+    fun getvDelegate(): VDelegateBase {
         //if (vDelegate == null) {
         //    vDelegate = VDelegateBase(context!!)
         //}

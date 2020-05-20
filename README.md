@@ -1,6 +1,7 @@
 # MyMvpLibrary
 
 ### 说明：
+okhttp 已经升级到4.3.0，注意引起的错误。
 
 
 ### How to use

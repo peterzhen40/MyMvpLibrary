@@ -50,11 +50,11 @@ dependencies {
 
     //network
     api "com.google.code.gson:gson:2.8.6"
-    api "com.squareup.retrofit2:retrofit:2.8.1"
-    api "com.squareup.retrofit2:converter-gson:2.7.1"
-    api 'com.squareup.okhttp3:logging-interceptor:4.3.0'
+    api "com.squareup.retrofit2:retrofit:2.6.2"
+    api "com.squareup.retrofit2:converter-gson:2.6.2"
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     api "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
-    api "com.squareup.okhttp3:okhttp:4.3.0"
+    api "com.squareup.okhttp3:okhttp:3.12.1"
     //api "com.zhy:okhttputils:2.6.2"
 
     //rx2

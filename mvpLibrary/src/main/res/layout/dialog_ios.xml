@@ -17,8 +17,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="title" />
@@ -29,8 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
+        app:layout_goneMarginTop="28dp"
         android:layout_marginEnd="16dp"
+        android:visibility="visible"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/tv_title">
 
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/main_text"
-            android:textSize="14sp"
+            android:textSize="16sp"
             tools:text="content" />
 
     </ScrollView>
@@ -60,7 +61,7 @@
         android:id="@+id/iv_line_hor"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/alertdialog_line"
         app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
@@ -71,7 +72,7 @@
         android:background="@drawable/iosdialog_left_selector"
         android:gravity="center"
         android:textColor="@color/actionsheet_blue"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/iv_line_ver"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_line_hor"
@@ -93,8 +94,7 @@
         android:background="@drawable/iosdialog_right_selector"
         android:gravity="center"
         android:textColor="@color/actionsheet_blue"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_line_ver"
         app:layout_constraintTop_toTopOf="@id/btn_no"

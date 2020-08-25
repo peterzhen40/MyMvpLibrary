@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import butterknife.BindView
 import cn.cbsd.mvplibrary.mvp.XActivity
 import cn.cbsd.mvplibrary.widget.IosDialog
@@ -65,22 +66,31 @@ class MainActivity : XActivity() {
             end.更改：辖区统计单位列表字段调整
         """.trimIndent()
         IosDialog(context).builder()
-                .setTitle("text")
-                .setMessage(text)
+                .setTitle("温馨提示")
+                .setMessage("公安修改单位信息不校验必填项")
+                .setPositiveButton("确定", null)
+                .setNegativeButton("取消", null)
                 .show()
     }
 
     private fun showDialog2() {
-        val list: MutableList<String?> = ArrayList()
-        for (i in 0..19) {
-            list.add("item" + (i + 1))
-        }
-        MaterialDialog.Builder(context)
-                .items(list)
-                .itemsCallbackSingleChoice(0) { dialog: MaterialDialog?, itemView: View?, which: Int, text: CharSequence? ->
-                    getvDelegate().showInfo(String.format("点击的是%d", which))
-                    false
-                }
+        //val list: MutableList<String?> = ArrayList()
+        //for (i in 0..19) {
+        //    list.add("item" + (i + 1))
+        //}
+        //MaterialDialog.Builder(context)
+        //        .items(list)
+        //        .itemsCallbackSingleChoice(0) { dialog: MaterialDialog?, itemView: View?, which: Int, text: CharSequence? ->
+        //            getvDelegate().showInfo(String.format("点击的是%d", which))
+        //            false
+        //        }
+        //        .show()
+
+        AlertDialog.Builder(context)
+                .setTitle("温馨提示")
+                .setMessage("公安修改单位信息不校验必填项")
+                .setPositiveButton("确定", null)
+                .setNegativeButton("取消", null)
                 .show()
     }
 

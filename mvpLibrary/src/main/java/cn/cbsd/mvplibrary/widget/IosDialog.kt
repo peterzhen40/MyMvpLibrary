@@ -23,6 +23,7 @@ class IosDialog(private val context: Context) {
     private var btn_neg: Button? = null
     private var btn_pos: Button? = null
     private var iv_line: ImageView? = null
+    private var scrollView: ScrollView? = null
     private val display: Display
     private var showTitle = false
     private var showMsg = false
@@ -47,7 +48,7 @@ class IosDialog(private val context: Context) {
         tvTitle = view.findViewById(R.id.tv_title)
         tvTitle?.visibility = View.GONE
         tvMsg = view.findViewById(R.id.tv_msg)
-        tvMsg?.visibility = View.GONE
+        //tvMsg?.visibility = View.GONE
         btn_neg = view.findViewById(R.id.btn_no)
         btn_neg?.visibility = View.GONE
         btn_pos = view.findViewById(R.id.btn_yes)
@@ -57,7 +58,8 @@ class IosDialog(private val context: Context) {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.visibility = View.GONE
         //groupBtn = view.findViewById(R.id.group_btn)
-        val scrollView = view.findViewById<ScrollView>(R.id.scrollView)
+        scrollView = view.findViewById(R.id.scrollView)
+        scrollView?.visibility = View.GONE
 
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.AlertDialogStyle)
@@ -79,11 +81,11 @@ class IosDialog(private val context: Context) {
         //    }
         //
         //}
-        scrollView.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+        scrollView?.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             val contentHeight = v.height
             val needHeight = 500
             if (contentHeight > needHeight) {
-                scrollView.layoutParams.height = needHeight
+                scrollView!!.layoutParams.height = needHeight
             }
         }
         recyclerView.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
@@ -177,7 +179,7 @@ class IosDialog(private val context: Context) {
         }
 
         if (showMsg) {
-            tvMsg?.visibility = View.VISIBLE
+            scrollView?.visibility = View.VISIBLE
         }
 
         if (!showPosBtn && !showNegBtn) {

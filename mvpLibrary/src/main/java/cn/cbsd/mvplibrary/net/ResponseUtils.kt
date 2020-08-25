@@ -40,7 +40,7 @@ fun <T> Response<ResponseBody>.parseJson(typeToken: TypeToken<T>): T {
         val body = body()
         if (body != null) {
             val contentType = body.contentType()
-            return when (contentType?.subtype) {
+            return when (contentType?.subtype()) {
                 "json" -> {
                     //json解析
                     //不能提前调用，string()这方法只能调用一次，之后就close没数据了

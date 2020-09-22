@@ -23,13 +23,13 @@
         tools:text="title" />
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        app:layout_goneMarginTop="28dp"
+        app:layout_goneMarginTop="20dp"
         android:layout_marginEnd="16dp"
         android:visibility="visible"
         android:scrollbars="none"
@@ -44,18 +44,18 @@
             android:textSize="16sp"
             tools:text="content" />
 
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:scrollbars="none"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/scrollView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:scrollbars="none"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/scrollView" />
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/iv_line_hor"
@@ -63,7 +63,7 @@
         android:layout_height="0.5dp"
         android:layout_marginTop="20dp"
         android:background="@color/alertdialog_line"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@id/scrollView" />
 
     <Button
         android:id="@+id/btn_no"

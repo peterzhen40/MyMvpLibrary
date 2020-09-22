@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import butterknife.BindView
 import cn.cbsd.mvplibrary.mvp.XActivity
 import cn.cbsd.mvplibrary.widget.IosDialog
+import cn.cbsd.mvplibrary.widget.OnSheetItemClickListener
 import com.afollestad.materialdialogs.MaterialDialog
 import es.dmoral.toasty.MyToast
 import java.util.*
@@ -65,9 +66,20 @@ class MainActivity : XActivity() {
             4.更改：公安管理员账号不能进行安全检查及现场巡查；
             end.更改：辖区统计单位列表字段调整
         """.trimIndent()
+
+        val longText = "1.更改：公安修改单位信息不校验必填项；粉丝看粉丝发空间疯狂扫反思灵感三啃囧"
+
+        val list: MutableList<String> = ArrayList()
+        for (i in 0..19) {
+            list.add("item" + (i + 1))
+        }
+
         IosDialog(context).builder()
-                .setTitle("温馨提示")
-                .setMessage("公安修改单位信息不校验必填项")
+                //.setTitle("温馨提示")
+                .setMessage(text)
+                //.setItems(list, listener = OnSheetItemClickListener {
+                //    getvDelegate().showInfo(String.format("点击的是%d", it))
+                //})
                 .setPositiveButton("确定", null)
                 .setNegativeButton("取消", null)
                 .show()

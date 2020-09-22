@@ -4,11 +4,10 @@ import android.app.Dialog
 import android.content.Context
 import android.view.*
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.cbsd.mvplibrary.R
-import cn.cbsd.mvplibrary.ext.MyItemClickListener
 
 /**
  * Author: liuqiang
@@ -17,13 +16,13 @@ import cn.cbsd.mvplibrary.ext.MyItemClickListener
  */
 class IosDialog(private val context: Context) {
     private var dialog: Dialog? = null
-    private var rootView: ConstraintLayout? = null
+    private var rootView: LinearLayout? = null
     private var tvTitle: TextView? = null
     private var tvMsg: TextView? = null
     private var btn_neg: Button? = null
     private var btn_pos: Button? = null
     private var iv_line: ImageView? = null
-    private var scrollView: ScrollView? = null
+    private var scrollView: NestedScrollView? = null
     private val display: Display
     private var showTitle = false
     private var showMsg = false
@@ -32,7 +31,7 @@ class IosDialog(private val context: Context) {
     private var showList = false
 
     private lateinit var recyclerView: RecyclerView
-    //private lateinit var groupBtn:Group
+    private lateinit var llButton: LinearLayout
 
     init {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -41,14 +40,13 @@ class IosDialog(private val context: Context) {
 
     fun builder(): IosDialog {
         // 获取Dialog布局
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_ios, null)
+        val view = LayoutInflater.from(context).inflate(R.layout.dialog_ios2, null)
 
         // 获取自定义Dialog布局中的控件
         rootView = view.findViewById(R.id.root_view)
         tvTitle = view.findViewById(R.id.tv_title)
         tvTitle?.visibility = View.GONE
         tvMsg = view.findViewById(R.id.tv_msg)
-        //tvMsg?.visibility = View.GONE
         btn_neg = view.findViewById(R.id.btn_no)
         btn_neg?.visibility = View.GONE
         btn_pos = view.findViewById(R.id.btn_yes)
@@ -57,9 +55,9 @@ class IosDialog(private val context: Context) {
         iv_line?.visibility = View.GONE
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.visibility = View.GONE
-        //groupBtn = view.findViewById(R.id.group_btn)
         scrollView = view.findViewById(R.id.scrollView)
         scrollView?.visibility = View.GONE
+        llButton = view.findViewById(R.id.ll_button)
 
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.AlertDialogStyle)
@@ -154,7 +152,7 @@ class IosDialog(private val context: Context) {
         return this
     }
 
-    fun setItems(list: List<String>, selectedIndex: Int = -1, listener: OnSheetItemClickListener) : IosDialog{
+    fun setItems(list: List<String>, selectedIndex: Int = -1, listener: OnSheetItemClickListener): IosDialog {
         showList = true
 
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -180,6 +178,7 @@ class IosDialog(private val context: Context) {
 
         if (showMsg) {
             scrollView?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
         }
 
         if (!showPosBtn && !showNegBtn) {
@@ -208,12 +207,11 @@ class IosDialog(private val context: Context) {
         }
 
         if (showList) {
-            //txt_msg?.visibility = View.GONE
+            scrollView?.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
-            //groupBtn.visibility = View.GONE
-            btn_neg?.visibility = View.GONE
-            btn_pos?.visibility = View.GONE
-            iv_line?.visibility = View.GONE
+            llButton.visibility = View.GONE
+        } else {
+            llButton.visibility = View.VISIBLE
         }
     }
 
@@ -222,10 +220,10 @@ class IosDialog(private val context: Context) {
         dialog?.show()
     }
 
-    class ContentAdapter(val dataList:List<String>) : RecyclerView.Adapter<ContentAdapter.ViewHolder>() {
+    class ContentAdapter(val dataList: List<String>) : RecyclerView.Adapter<ContentAdapter.ViewHolder>() {
 
-        var selectedIndex:Int = -1
-        var listener:OnSheetItemClickListener? = null
+        var selectedIndex: Int = -1
+        var listener: OnSheetItemClickListener? = null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val root = LayoutInflater.from(parent.context).inflate(R.layout.item_ios_checkbox, parent, false)
@@ -241,13 +239,13 @@ class IosDialog(private val context: Context) {
             holder.checkBox.isChecked = position == selectedIndex
             holder.text.text = item
 
-            holder.text.setOnClickListener{
+            holder.text.setOnClickListener {
                 listener?.onClick(position)
                 selectedIndex = position
                 notifyDataSetChanged()
             }
 
-            holder.checkBox.setOnClickListener{
+            holder.checkBox.setOnClickListener {
                 listener?.onClick(position)
                 selectedIndex = position
                 notifyDataSetChanged()
@@ -257,7 +255,7 @@ class IosDialog(private val context: Context) {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             var checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
-            var text:TextView = itemView.findViewById(R.id.tv_select)
+            var text: TextView = itemView.findViewById(R.id.tv_select)
 
         }
 

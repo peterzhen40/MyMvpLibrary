@@ -19,10 +19,6 @@ import java.net.URLEncoder
  */
 object EncodeUtils {
 
-    init {
-        //throw UnsupportedOperationException("u can't instantiate me...")
-    }
-
     /**
      * 编码为GBK
      * @param input
@@ -92,7 +88,7 @@ object EncodeUtils {
      */
     @JvmStatic
     fun base64Encode(input: ByteArray): ByteArray {
-        return Base64.encode(input, Base64.NO_WRAP)
+        return Base64.encode(input, Base64.DEFAULT)
     }
 
     /**
@@ -103,7 +99,7 @@ object EncodeUtils {
      */
     @JvmStatic
     fun base64Encode2String(input: ByteArray): String {
-        return Base64.encodeToString(input, Base64.NO_WRAP)
+        return Base64.encodeToString(input, Base64.DEFAULT)
     }
 
     /**
@@ -114,7 +110,7 @@ object EncodeUtils {
      */
     @JvmStatic
     fun base64Decode(input: String): ByteArray {
-        return Base64.decode(input, Base64.NO_WRAP)
+        return Base64.decode(input, Base64.DEFAULT)
     }
 
     /**
@@ -125,7 +121,7 @@ object EncodeUtils {
      */
     @JvmStatic
     fun base64Decode(input: ByteArray): ByteArray {
-        return Base64.decode(input, Base64.NO_WRAP)
+        return Base64.decode(input, Base64.DEFAULT)
     }
 
     /**

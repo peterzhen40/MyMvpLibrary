@@ -11,7 +11,12 @@ import cn.cbsd.mvplibrary.mvp.XActivity
 import cn.cbsd.mvplibrary.widget.IosDialog
 import cn.cbsd.mvplibrary.widget.OnSheetItemClickListener
 import com.afollestad.materialdialogs.MaterialDialog
+import com.orhanobut.logger.Logger
 import es.dmoral.toasty.MyToast
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
 
 class MainActivity : XActivity() {
@@ -41,6 +46,7 @@ class MainActivity : XActivity() {
         mButton2!!.setOnClickListener {
             showDialog2()
         }
+
     }
 
     private fun showDialog() {
@@ -67,7 +73,7 @@ class MainActivity : XActivity() {
             end.更改：辖区统计单位列表字段调整
         """.trimIndent()
 
-        val longText = "1.更改：公安修改单位信息不校验必填项；粉丝看粉丝发空间疯狂扫反思灵感三啃囧"
+        val longText = "是否删除该视频的缴费订单？可以再次登记"
 
         val list: MutableList<String> = ArrayList()
         for (i in 0..19) {
@@ -76,7 +82,7 @@ class MainActivity : XActivity() {
 
         IosDialog(context).builder()
                 //.setTitle("温馨提示")
-                .setMessage(text)
+                .setMessage(longText)
                 //.setItems(list, listener = OnSheetItemClickListener {
                 //    getvDelegate().showInfo(String.format("点击的是%d", it))
                 //})
@@ -86,6 +92,11 @@ class MainActivity : XActivity() {
     }
 
     private fun showDialog2() {
+        var page =1
+        do {
+            Timber.d(page.toString())
+            page++
+        }while (page<10)
         //val list: MutableList<String?> = ArrayList()
         //for (i in 0..19) {
         //    list.add("item" + (i + 1))
@@ -98,12 +109,12 @@ class MainActivity : XActivity() {
         //        }
         //        .show()
 
-        AlertDialog.Builder(context)
-                .setTitle("温馨提示")
-                .setMessage("公安修改单位信息不校验必填项")
-                .setPositiveButton("确定", null)
-                .setNegativeButton("取消", null)
-                .show()
+        //AlertDialog.Builder(context)
+        //        .setTitle("温馨提示")
+        //        .setMessage("公安修改单位信息不校验必填项")
+        //        .setPositiveButton("确定", null)
+        //        .setNegativeButton("取消", null)
+        //        .show()
     }
 
     override fun newP(): Any? {

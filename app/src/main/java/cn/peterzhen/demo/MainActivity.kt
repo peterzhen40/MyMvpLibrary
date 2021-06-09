@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import butterknife.BindView
+import cn.cbsd.mvplibrary.kit.FileUtil
 import cn.cbsd.mvplibrary.mvp.XActivity
 import cn.cbsd.mvplibrary.widget.IosDialog
 import cn.cbsd.mvplibrary.widget.OnSheetItemClickListener
@@ -89,6 +90,8 @@ class MainActivity : XActivity() {
                 .setPositiveButton("确定", null)
                 .setNegativeButton("取消", null)
                 .show()
+        FileUtil.PACKAGE_PATH
+        FileUtil.MEDIA_TYPE_IMAGE
     }
 
     private fun showDialog2() {

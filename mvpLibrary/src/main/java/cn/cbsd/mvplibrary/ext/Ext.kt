@@ -19,6 +19,11 @@ fun String?.getNotNull():String{
     else this!!
 }
 
+fun CharSequence?.getNotNull():CharSequence{
+    return if (isNullOrEmpty()) ""
+    else this!!
+}
+
 fun Double?.getNotNull(): Double {
     return this ?: 0.0
 }
